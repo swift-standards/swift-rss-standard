@@ -18,12 +18,12 @@ extension RSS {
 
 // MARK: - Codable
 extension RSS.Hour: Codable {
-    public func encode(to encoder: Encoder) throws {
+    public func encode(to encoder: any Encoder) throws {
         var container = encoder.singleValueContainer()
         try container.encode(value)
     }
 
-    public init(from decoder: Decoder) throws {
+    public init(from decoder: any Decoder) throws {
         let container = try decoder.singleValueContainer()
         let value = try container.decode(Int.self)
         guard let hour = RSS.Hour(value) else {

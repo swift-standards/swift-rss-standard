@@ -1,4 +1,4 @@
-import URI_Standard
+public import URI_Standard
 
 extension RSS {
     /// RSS 2.0 Enclosure (media attachment)

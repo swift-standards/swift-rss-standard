@@ -1,5 +1,5 @@
-import URI_Standard
-import RFC_5322
+public import URI_Standard
+public import RFC_5322
 
 extension RSS {
     /// RSS 2.0 Item (individual entry)

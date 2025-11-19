@@ -27,12 +27,12 @@ extension RSS.CloudProtocol: ExpressibleByStringLiteral {
 
 // MARK: - Codable
 extension RSS.CloudProtocol: Codable {
-    public func encode(to encoder: Encoder) throws {
+    public func encode(to encoder: any Encoder) throws {
         var container = encoder.singleValueContainer()
         try container.encode(rawValue)
     }
 
-    public init(from decoder: Decoder) throws {
+    public init(from decoder: any Decoder) throws {
         let container = try decoder.singleValueContainer()
         let rawValue = try container.decode(String.self)
         self.init(rawValue: rawValue)

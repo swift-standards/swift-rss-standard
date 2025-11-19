@@ -1,5 +1,5 @@
 import RSS_Standard
-import URI_Standard
+public import URI_Standard
 
 extension iTunes {
     /// iTunes podcast item (episode) extensions

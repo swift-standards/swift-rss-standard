@@ -1,4 +1,4 @@
-import RFC_5322
+public import RFC_5322
 
 extension DublinCore {
     /// Dublin Core metadata elements
