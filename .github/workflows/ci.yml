@@ -11,7 +11,7 @@ jobs:
     name: macOS (Xcode 16.0, Swift 6.0)
     runs-on: macos-15
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v5
       - name: Select Xcode 16.0
         run: sudo xcode-select -s /Applications/Xcode_16.0.app
       - name: Swift version
@@ -25,7 +25,7 @@ jobs:
     name: macOS (Xcode 16.2, Swift 6.2)
     runs-on: macos-15
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v5
       - name: Select Xcode 16.2
         run: sudo xcode-select -s /Applications/Xcode_16.2.app
       - name: Swift version
@@ -40,7 +40,7 @@ jobs:
     runs-on: ubuntu-latest
     container: swift:6.0
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v5
       - name: Swift version
         run: swift --version
       - name: Build
@@ -52,7 +52,7 @@ jobs:
     name: Windows (Swift 6.0)
     runs-on: windows-latest
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v5
       - uses: compnerd/gha-setup-swift@main
         with:
           branch: swift-6.0-release
