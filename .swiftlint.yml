@@ -1,0 +1,21 @@
+disabled_rules:
+  - trailing_comma
+  - todo
+  - line_length
+
+opt_in_rules:
+  - empty_count
+  - empty_string
+
+excluded:
+  - .build
+  - .swiftpm
+
+line_length:
+  warning: 120
+  error: 200
+
+identifier_name:
+  min_length:
+    warning: 1
+    error: 1
