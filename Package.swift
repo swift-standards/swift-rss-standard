@@ -29,7 +29,7 @@ let package = Package(
         .library(name: .rssDublinCore, targets: [.rssDublinCore]),
     ],
     dependencies: [
-        .package(path: "../swift-rfc-3986")
+        .package(url: "https://github.com/swift-standards/swift-rfc-3986", from: "0.1.0")
     ],
     targets: [
         .target(
