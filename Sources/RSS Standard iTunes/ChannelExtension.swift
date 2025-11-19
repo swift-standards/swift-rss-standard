@@ -1,4 +1,5 @@
 import RSS_Standard
+import RFC_3986
 
 extension iTunes {
     /// iTunes podcast channel extensions
@@ -9,8 +10,8 @@ extension iTunes {
         /// The podcast owner information
         public let owner: Owner?
         
-        /// URL to podcast artwork (minimum 1400x1400, maximum 3000x3000 pixels)
-        public let image: URL?
+        /// URI to podcast artwork (minimum 1400x1400, maximum 3000x3000 pixels)
+        public let image: RFC_3986.URI?
         
         /// Podcast categories
         public let categories: [Category]
@@ -33,7 +34,7 @@ extension iTunes {
         public init(
             author: String? = nil,
             owner: Owner? = nil,
-            image: URL? = nil,
+            image: RFC_3986.URI? = nil,
             categories: [Category] = [],
             explicit: Bool? = nil,
             type: PodcastType? = nil,

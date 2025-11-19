@@ -1,3 +1,4 @@
+import RFC_3986
 
 extension RSS {
     /// RSS 2.0 GUID (globally unique identifier)
@@ -10,11 +11,11 @@ extension RSS {
         /// - Parameters:
         ///   - value: The GUID value
         ///   - isPermaLink: Whether this GUID is a permalink (default: true per RSS spec)
-        /// - Throws: ValidationError.invalidPermalink if isPermaLink is true but value is not a valid URL with scheme
+        /// - Throws: ValidationError.invalidPermalink if isPermaLink is true but value is not a valid URI with scheme
         public init(_ value: String, isPermaLink: Bool = true) throws {
-            // Validate that permalinks are valid URLs with a scheme
+            // Validate that permalinks are valid URIs with a scheme
             if isPermaLink {
-                guard let url = URL(string: value), url.scheme != nil else {
+                guard let uri = try? RFC_3986.URI(value), uri.scheme != nil else {
                     throw ValidationError.invalidPermalink(value)
                 }
             }
@@ -23,21 +24,13 @@ extension RSS {
             self.isPermaLink = isPermaLink
         }
 
-        /// Creates a GUID from a UUID (isPermaLink will be false)
+        /// Creates a GUID from a URI (isPermaLink will be true)
         ///
-        /// - Parameter uuid: The UUID to use as the GUID value
-        public init(uuid: UUID) {
-            self.value = uuid.uuidString
-            self.isPermaLink = false
-        }
-
-        /// Creates a GUID from a URL (isPermaLink will be true)
+        /// URIs are always valid permalinks, so this initializer doesn't throw.
         ///
-        /// URLs are always valid permalinks, so this initializer doesn't throw.
-        ///
-        /// - Parameter url: The URL to use as the GUID value
-        public init(url: URL) {
-            self.value = url.absoluteString
+        /// - Parameter uri: The URI to use as the GUID value
+        public init(uri: RFC_3986.URI) {
+            self.value = uri.value
             self.isPermaLink = true
         }
 

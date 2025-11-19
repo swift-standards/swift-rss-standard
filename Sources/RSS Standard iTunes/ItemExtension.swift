@@ -1,4 +1,5 @@
 import RSS_Standard
+import RFC_3986
 
 extension iTunes {
     /// iTunes podcast item (episode) extensions
@@ -30,8 +31,8 @@ extension iTunes {
         /// Episode summary
         public let summary: String?
         
-        /// URL to episode-specific artwork
-        public let image: URL?
+        /// URI to episode-specific artwork
+        public let image: RFC_3986.URI?
         
         public init(
             author: String? = nil,
@@ -43,7 +44,7 @@ extension iTunes {
             title: String? = nil,
             subtitle: String? = nil,
             summary: String? = nil,
-            image: URL? = nil
+            image: RFC_3986.URI? = nil
         ) {
             self.author = author
             self.duration = duration

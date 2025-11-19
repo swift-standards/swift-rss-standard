@@ -2,6 +2,8 @@ import Testing
 @testable import RSS_Standard
 @testable import RSS_Standard_iTunes
 @testable import RSS_Standard_Dublin_Core
+import RFC_3986
+import RFC_5322
 
 @Suite
 struct `Extension Tests` {
@@ -40,7 +42,7 @@ struct `Extension Tests` {
         let ext = iTunes.ChannelExtension(
             author: "John Doe",
             owner: iTunes.Owner(name: "Jane Smith", email: "jane@example.com"),
-            image: URL(string: "https://example.com/art.jpg")!,
+            image: try RFC_3986.URI("https://example.com/art.jpg"),
             categories: [
                 iTunes.Category(text: "Technology", subcategory: "Podcasting")
             ],
@@ -74,7 +76,7 @@ struct `Extension Tests` {
             creator: ["Alice", "Bob"],
             subject: ["Swift", "Programming"],
             publisher: "Example Press",
-            date: Date(),
+            date: try RFC_5322.Date(year: 2025, month: 1, day: 1),
             rights: "© 2025"
         )
 

@@ -1,5 +1,7 @@
 import Testing
 @testable import RSS_Standard
+import RFC_3986
+import RFC_5322
 
 @Suite
 struct `RSS Channel Tests` {
@@ -7,22 +9,22 @@ struct `RSS Channel Tests` {
     func `Channel creation with required fields`() async throws {
         let channel = RSS.Channel(
             title: "Test Feed",
-            link: URL(string: "https://example.com")!,
+            link: try RFC_3986.URI("https://example.com"),
             description: "A test feed"
         )
 
         #expect(channel.title == "Test Feed")
-        #expect(channel.link.absoluteString == "https://example.com")
+        #expect(channel.link.value == "https://example.com")
         #expect(channel.description == "A test feed")
         #expect(channel.items.isEmpty)
     }
 
     @Test
     func `Channel with optional fields`() async throws {
-        let pubDate = Date()
+        let pubDate = try RFC_5322.Date(year: 2025, month: 1, day: 1, hour: 12, minute: 0, second: 0)
         let channel = RSS.Channel(
             title: "Test Feed",
-            link: URL(string: "https://example.com")!,
+            link: try RFC_3986.URI("https://example.com"),
             description: "A test feed",
             language: "en-US",
             copyright: "© 2025",
@@ -45,12 +47,12 @@ struct `RSS Channel Tests` {
         let item = try RSS.Item(
             title: "Test Item",
             description: "Item description",
-            link: URL(string: "https://example.com/item1")!
+            link: try RFC_3986.URI("https://example.com/item1")
         )
 
         let channel = RSS.Channel(
             title: "Test Feed",
-            link: URL(string: "https://example.com")!,
+            link: try RFC_3986.URI("https://example.com"),
             description: "A test feed",
             items: [item]
         )
@@ -64,7 +66,7 @@ struct `RSS Channel Tests` {
     func `Channel with categories`() async throws {
         let channel = RSS.Channel(
             title: "Test Feed",
-            link: URL(string: "https://example.com")!,
+            link: try RFC_3986.URI("https://example.com"),
             description: "A test feed",
             categories: [
                 RSS.Category(domain: "https://example.com/categories", value: "Technology"),
@@ -106,9 +108,9 @@ struct `RSS Channel Tests` {
     func `Image validation - width and height limits`() async throws {
         // Valid image
         let validImage = try RSS.Image(
-            url: URL(string: "https://example.com/logo.png")!,
+            url: try RFC_3986.URI("https://example.com/logo.png"),
             title: "Logo",
-            link: URL(string: "https://example.com")!,
+            link: try RFC_3986.URI("https://example.com"),
             width: 88,
             height: 31
         )
@@ -118,9 +120,9 @@ struct `RSS Channel Tests` {
         // Width exceeds maximum
         #expect(throws: RSS.ValidationError.imageWidthExceedsMaximum(145)) {
             try RSS.Image(
-                url: URL(string: "https://example.com/logo.png")!,
+                url: try RFC_3986.URI("https://example.com/logo.png"),
                 title: "Logo",
-                link: URL(string: "https://example.com")!,
+                link: try RFC_3986.URI("https://example.com"),
                 width: 145
             )
         }
@@ -128,9 +130,9 @@ struct `RSS Channel Tests` {
         // Height exceeds maximum
         #expect(throws: RSS.ValidationError.imageHeightExceedsMaximum(401)) {
             try RSS.Image(
-                url: URL(string: "https://example.com/logo.png")!,
+                url: try RFC_3986.URI("https://example.com/logo.png"),
                 title: "Logo",
-                link: URL(string: "https://example.com")!,
+                link: try RFC_3986.URI("https://example.com"),
                 height: 401
             )
         }

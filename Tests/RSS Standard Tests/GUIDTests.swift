@@ -1,22 +1,14 @@
 import Testing
 @testable import RSS_Standard
+import RFC_3986
 
 @Suite
 struct `GUID Validation` {
 
     @Test
-    func `GUID from UUID is not a permalink`() {
-        let uuid = UUID()
-        let guid = RSS.GUID(uuid: uuid)
-
-        #expect(guid.value == uuid.uuidString)
-        #expect(guid.isPermaLink == false)
-    }
-
-    @Test
-    func `GUID from URL is a permalink`() {
-        let url = URL(string: "https://example.com/post/123")!
-        let guid = RSS.GUID(url: url)
+    func `GUID from URI is a permalink`() throws {
+        let uri = try RFC_3986.URI("https://example.com/post/123")
+        let guid = RSS.GUID(uri: uri)
 
         #expect(guid.value == "https://example.com/post/123")
         #expect(guid.isPermaLink == true)

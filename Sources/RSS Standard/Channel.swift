@@ -1,4 +1,5 @@
 import RFC_3986
+import RFC_5322
 
 extension RSS {
     /// RSS 2.0 Channel (top-level feed container)
@@ -13,8 +14,8 @@ extension RSS {
         public let copyright: String?
         public let managingEditor: String? // email
         public let webMaster: String? // email
-        public let pubDate: Date?
-        public let lastBuildDate: Date?
+        public let pubDate: RFC_5322.Date?
+        public let lastBuildDate: RFC_5322.Date?
         public let categories: [Category]
         public let generator: String?
         public let docs: RFC_3986.URI?
@@ -38,8 +39,8 @@ extension RSS {
             copyright: String? = nil,
             managingEditor: String? = nil,
             webMaster: String? = nil,
-            pubDate: Date? = nil,
-            lastBuildDate: Date? = nil,
+            pubDate: RFC_5322.Date? = nil,
+            lastBuildDate: RFC_5322.Date? = nil,
             categories: [Category] = [],
             generator: String? = nil,
             docs: RFC_3986.URI? = nil,
@@ -85,8 +86,8 @@ extension RSS {
             copyright: String? = nil,
             managingEditor: String? = nil,
             webMaster: String? = nil,
-            pubDate: Date? = nil,
-            lastBuildDate: Date? = nil,
+            pubDate: RFC_5322.Date? = nil,
+            lastBuildDate: RFC_5322.Date? = nil,
             categories: [Category] = [],
             generator: String? = nil,
             docs: (any RFC_3986.URI.Representable)? = nil,

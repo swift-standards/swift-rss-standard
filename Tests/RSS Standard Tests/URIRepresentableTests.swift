@@ -14,7 +14,7 @@ struct `URI.Representable Integration Tests` {
             description: "Test channel"
         )
 
-        #expect(channel.link.absoluteString == "https://example.com")
+        #expect(channel.link.value == "https://example.com")
     }
 
     @Test
@@ -25,7 +25,7 @@ struct `URI.Representable Integration Tests` {
             link: uri
         )
 
-        #expect(item.link?.absoluteString == "https://example.com/item")
+        #expect(item.link?.value == "https://example.com/item")
     }
 
     @Test
@@ -37,6 +37,6 @@ struct `URI.Representable Integration Tests` {
             type: "audio/mpeg"
         )
 
-        #expect(enclosure.url.absoluteString == "https://example.com/media.mp3")
+        #expect(enclosure.url.value == "https://example.com/media.mp3")
     }
 }

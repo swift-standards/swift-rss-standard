@@ -1,3 +1,4 @@
+import Standards
 
 extension iTunes {
     /// Duration in hours, minutes, and seconds for podcast episodes
@@ -24,9 +25,12 @@ extension iTunes {
         
         public var formatted: String {
             if let hours = hours {
-                return String(format: "%d:%02d:%02d", hours, minutes, seconds)
+                let mm = minutes.formatted(.decimal.zeroPadded(width: 2))
+                let ss = seconds.formatted(.decimal.zeroPadded(width: 2))
+                return "\(hours):\(mm):\(ss)"
             } else {
-                return String(format: "%d:%02d", minutes, seconds)
+                let ss = seconds.formatted(.decimal.zeroPadded(width: 2))
+                return "\(minutes):\(ss)"
             }
         }
         

@@ -1,3 +1,4 @@
+import RFC_5322
 
 extension DublinCore {
     /// Dublin Core metadata elements
@@ -16,7 +17,7 @@ extension DublinCore {
         public let contributor: [String]
         
         /// A point or period of time associated with an event in the lifecycle of the resource
-        public let date: Date?
+        public let date: RFC_5322.Date?
         
         /// The nature or genre of the resource
         public let type: String?
@@ -47,7 +48,7 @@ extension DublinCore {
             subject: [String] = [],
             publisher: String? = nil,
             contributor: [String] = [],
-            date: Date? = nil,
+            date: RFC_5322.Date? = nil,
             type: String? = nil,
             format: String? = nil,
             identifier: String? = nil,

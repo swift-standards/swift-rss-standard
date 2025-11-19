@@ -1,6 +1,6 @@
 
 extension RSS {
-    public enum ValidationError: Error, LocalizedError, Sendable, Equatable {
+    public enum ValidationError: Error, Sendable, Equatable {
         case itemRequiresTitleOrDescription
         case imageWidthExceedsMaximum(_ width: Int)
         case imageHeightExceedsMaximum(_ height: Int)
@@ -18,7 +18,7 @@ extension RSS {
             case .invalidXML(let description):
                 return "Invalid RSS XML: \(description)"
             case .invalidPermalink(let value):
-                return "GUID permalink value '\(value)' is not a valid URL"
+                return "GUID permalink value '\(value)' is not a valid URI"
             }
         }
     }

@@ -1,4 +1,5 @@
 import RFC_3986
+import RFC_5322
 
 extension RSS {
     /// RSS 2.0 Item (individual entry)
@@ -14,7 +15,7 @@ extension RSS {
         public let comments: RFC_3986.URI?
         public let enclosure: Enclosure?
         public let guid: GUID?
-        public let pubDate: Date?
+        public let pubDate: RFC_5322.Date?
         public let source: Source?
         
         public init(
@@ -26,7 +27,7 @@ extension RSS {
             comments: RFC_3986.URI? = nil,
             enclosure: Enclosure? = nil,
             guid: GUID? = nil,
-            pubDate: Date? = nil,
+            pubDate: RFC_5322.Date? = nil,
             source: Source? = nil
         ) throws {
             // Validation: at least one of title or description required
@@ -55,7 +56,7 @@ extension RSS {
             comments: RFC_3986.URI? = nil,
             enclosure: Enclosure? = nil,
             guid: GUID? = nil,
-            pubDate: Date? = nil,
+            pubDate: RFC_5322.Date? = nil,
             source: Source? = nil
         ) -> Item {
             Item(
@@ -82,7 +83,7 @@ extension RSS {
             comments: RFC_3986.URI?,
             enclosure: Enclosure?,
             guid: GUID?,
-            pubDate: Date?,
+            pubDate: RFC_5322.Date?,
             source: Source?,
             unchecked: Void
         ) {
@@ -111,7 +112,7 @@ extension RSS {
             comments: (any RFC_3986.URI.Representable)? = nil,
             enclosure: Enclosure? = nil,
             guid: GUID? = nil,
-            pubDate: Date? = nil,
+            pubDate: RFC_5322.Date? = nil,
             source: Source? = nil
         ) throws {
             try self.init(
