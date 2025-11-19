@@ -1,11 +1,11 @@
 import Testing
 @testable import RSS_Standard
 
-@Suite("GUID Validation")
-struct GUIDTests {
+@Suite
+struct `GUID Validation` {
 
-    @Test("GUID from UUID is not a permalink")
-    func guidFromUUID() {
+    @Test
+    func `GUID from UUID is not a permalink`() {
         let uuid = UUID()
         let guid = RSS.GUID(uuid: uuid)
 
@@ -13,8 +13,8 @@ struct GUIDTests {
         #expect(guid.isPermaLink == false)
     }
 
-    @Test("GUID from URL is a permalink")
-    func guidFromURL() {
+    @Test
+    func `GUID from URL is a permalink`() {
         let url = URL(string: "https://example.com/post/123")!
         let guid = RSS.GUID(url: url)
 
@@ -22,23 +22,23 @@ struct GUIDTests {
         #expect(guid.isPermaLink == true)
     }
 
-    @Test("Valid permalink string succeeds")
-    func validPermalinkString() throws {
+    @Test
+    func `Valid permalink string succeeds`() throws {
         let guid = try RSS.GUID("https://example.com/post/456", isPermaLink: true)
 
         #expect(guid.value == "https://example.com/post/456")
         #expect(guid.isPermaLink == true)
     }
 
-    @Test("Invalid permalink string throws")
-    func invalidPermalinkString() {
+    @Test
+    func `Invalid permalink string throws`() {
         #expect(throws: RSS.ValidationError.self) {
             try RSS.GUID("not a valid url", isPermaLink: true)
         }
     }
 
-    @Test("Non-permalink string with invalid format succeeds")
-    func nonPermalinkWithInvalidURL() throws {
+    @Test
+    func `Non-permalink string with invalid format succeeds`() throws {
         // When isPermaLink is false, any string is valid
         let guid = try RSS.GUID("my-custom-id-123", isPermaLink: false)
 
@@ -46,16 +46,16 @@ struct GUIDTests {
         #expect(guid.isPermaLink == false)
     }
 
-    @Test("String literal creates unchecked GUID")
-    func stringLiteral() {
+    @Test
+    func `String literal creates unchecked GUID`() {
         let guid: RSS.GUID = "tag:example.com,2025:post-123"
 
         #expect(guid.value == "tag:example.com,2025:post-123")
         #expect(guid.isPermaLink == true) // Default for string literals
     }
 
-    @Test("GUID validation error message")
-    func validationErrorMessage() {
+    @Test
+    func `GUID validation error message`() {
         do {
             _ = try RSS.GUID("invalid url!", isPermaLink: true)
             Issue.record("Expected ValidationError to be thrown")
@@ -72,11 +72,11 @@ struct GUIDTests {
     }
 }
 
-@Suite("GUID Codable")
-struct GUIDCodableTests {
+@Suite
+struct `GUID Codable` {
 
-    @Test("Encode GUID with permalink")
-    func encodePermalink() throws {
+    @Test
+    func `Encode GUID with permalink`() throws {
         let guid = try RSS.GUID("https://example.com/post", isPermaLink: true)
         let encoder = JSONEncoder()
         let data = try encoder.encode(guid)
@@ -87,8 +87,8 @@ struct GUIDCodableTests {
         #expect(json.contains("\"isPermaLink\":true"))
     }
 
-    @Test("Decode GUID uses unchecked initializer")
-    func decodeInvalidPermalink() throws {
+    @Test
+    func `Decode GUID uses unchecked initializer`() throws {
         // Decoding should succeed even with invalid permalink
         // (for compatibility with existing data)
         let json = """

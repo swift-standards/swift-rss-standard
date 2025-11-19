@@ -1,10 +1,10 @@
 import Testing
 @testable import RSS_Standard
 
-@Suite("RSS Channel Tests")
-struct RSSChannelTests {
-    @Test("Channel creation with required fields")
-    func basicChannelCreation() async throws {
+@Suite
+struct `RSS Channel Tests` {
+    @Test
+    func `Channel creation with required fields`() async throws {
         let channel = RSS.Channel(
             title: "Test Feed",
             link: URL(string: "https://example.com")!,
@@ -17,8 +17,8 @@ struct RSSChannelTests {
         #expect(channel.items.isEmpty)
     }
 
-    @Test("Channel with optional fields")
-    func channelWithOptionalFields() async throws {
+    @Test
+    func `Channel with optional fields`() async throws {
         let pubDate = Date()
         let channel = RSS.Channel(
             title: "Test Feed",
@@ -40,8 +40,8 @@ struct RSSChannelTests {
         #expect(channel.generator == "My Generator")
     }
 
-    @Test("Channel with items")
-    func channelWithItems() async throws {
+    @Test
+    func `Channel with items`() async throws {
         let item = try RSS.Item(
             title: "Test Item",
             description: "Item description",
@@ -60,8 +60,8 @@ struct RSSChannelTests {
         #expect(channel.items[0].description == "Item description")
     }
 
-    @Test("Channel with categories")
-    func channelWithCategories() async throws {
+    @Test
+    func `Channel with categories`() async throws {
         let channel = RSS.Channel(
             title: "Test Feed",
             link: URL(string: "https://example.com")!,
@@ -79,8 +79,8 @@ struct RSSChannelTests {
         #expect(channel.categories[1].value == "News")
     }
 
-    @Test("Item validation - requires title or description")
-    func itemValidation() async throws {
+    @Test
+    func `Item validation - requires title or description`() async throws {
         // Should succeed with title
         let item1 = try RSS.Item(title: "Test")
         #expect(item1.title == "Test")
@@ -102,8 +102,8 @@ struct RSSChannelTests {
         }
     }
 
-    @Test("Image validation - width and height limits")
-    func imageValidation() async throws {
+    @Test
+    func `Image validation - width and height limits`() async throws {
         // Valid image
         let validImage = try RSS.Image(
             url: URL(string: "https://example.com/logo.png")!,

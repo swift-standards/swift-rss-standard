@@ -3,8 +3,8 @@ import Testing
 @testable import RSS_Standard_iTunes
 @testable import RSS_Standard_Dublin_Core
 
-@Suite("Extension Tests")
-struct ExtensionsTests {
+@Suite
+struct `Extension Tests` {
     @Test func iTunesDurationParsing() async throws {
         // Test HH:MM:SS format
         let duration1 = iTunes.Duration(string: "1:30:45")

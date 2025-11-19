@@ -2,10 +2,10 @@ import Testing
 @testable import RSS_Standard
 @testable import RSS_Standard_iTunes
 
-@Suite("README Verification")
-struct ReadmeVerificationTests {
-    @Test("Quick Start - Basic RSS feed model creation")
-    func quickStartBasicFeed() throws {
+@Suite
+struct `README Verification` {
+    @Test
+    func `Quick Start - Basic RSS feed model creation`() throws {
         // Create a basic RSS feed
         let channel = RSS.Channel(
             title: "My Blog",
@@ -30,8 +30,8 @@ struct ReadmeVerificationTests {
         #expect(channel.items[0].title == "First Post")
     }
 
-    @Test("Podcast Feed Example - model with multiple items")
-    func podcastFeedExample() throws {
+    @Test
+    func `Podcast Feed Example - model with multiple items`() throws {
         let channel = RSS.Channel(
             title: "My Podcast",
             link: URL(string: "https://example.com/podcast")!,
@@ -58,8 +58,8 @@ struct ReadmeVerificationTests {
         #expect(channel.items[1].title == "Episode 2: Advanced Topics")
     }
 
-    @Test("Complex feed with categories and enclosures")
-    func complexFeedModel() throws {
+    @Test
+    func `Complex feed with categories and enclosures`() throws {
         let enclosure = RSS.Enclosure(
             url: URL(string: "https://example.com/audio.mp3")!,
             length: 123456,
