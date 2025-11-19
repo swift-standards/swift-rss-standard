@@ -12,7 +12,7 @@ extension Target.Dependency {
     static var rss: Self { .target(name: .rss) }
     static var rssITunes: Self { .target(name: .rssITunes) }
     static var rssDublinCore: Self { .target(name: .rssDublinCore) }
-    static var rfc3986: Self { .product(name: "RFC 3986", package: "swift-rfc-3986") }
+    static var uriStandard: Self { .product(name: "URI Standard", package: "swift-uri-standard") }
     static var rfc5322: Self { .product(name: "RFC 5322", package: "swift-rfc-5322") }
     static var standards: Self { .product(name: "Standards", package: "swift-standards") }
 }
@@ -31,14 +31,14 @@ let package = Package(
         .library(name: .rssDublinCore, targets: [.rssDublinCore]),
     ],
     dependencies: [
-        .package(url: "https://github.com/swift-standards/swift-rfc-3986", from: "0.1.0"),
+        .package(url: "https://github.com/swift-standards/swift-uri-standard", from: "0.1.0"),
         .package(url: "https://github.com/swift-standards/swift-rfc-5322", from: "0.1.0"),
         .package(url: "https://github.com/swift-standards/swift-standards", from: "0.0.1")
     ],
     targets: [
         .target(
             name: .rss,
-            dependencies: [.rfc3986, .rfc5322]
+            dependencies: [.uriStandard, .rfc5322]
         ),
         .target(
             name: .rssITunes,

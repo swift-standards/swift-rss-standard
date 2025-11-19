@@ -1,4 +1,4 @@
-import RFC_3986
+import URI_Standard
 import RFC_5322
 
 extension RSS {
@@ -9,10 +9,10 @@ extension RSS {
         public let description: String?
         
         // Optional elements
-        public let link: RFC_3986.URI?
+        public let link: URI?
         public let author: String? // email
         public let categories: [Category]
-        public let comments: RFC_3986.URI?
+        public let comments: URI?
         public let enclosure: Enclosure?
         public let guid: GUID?
         public let pubDate: RFC_5322.Date?
@@ -21,10 +21,10 @@ extension RSS {
         public init(
             title: String? = nil,
             description: String? = nil,
-            link: RFC_3986.URI? = nil,
+            link: URI? = nil,
             author: String? = nil,
             categories: [Category] = [],
-            comments: RFC_3986.URI? = nil,
+            comments: URI? = nil,
             enclosure: Enclosure? = nil,
             guid: GUID? = nil,
             pubDate: RFC_5322.Date? = nil,
@@ -50,10 +50,10 @@ extension RSS {
         static func makeUnchecked(
             title: String? = nil,
             description: String? = nil,
-            link: RFC_3986.URI? = nil,
+            link: URI? = nil,
             author: String? = nil,
             categories: [Category] = [],
-            comments: RFC_3986.URI? = nil,
+            comments: URI? = nil,
             enclosure: Enclosure? = nil,
             guid: GUID? = nil,
             pubDate: RFC_5322.Date? = nil,
@@ -77,10 +77,10 @@ extension RSS {
         private init(
             title: String?,
             description: String?,
-            link: RFC_3986.URI?,
+            link: URI?,
             author: String?,
             categories: [Category],
-            comments: RFC_3986.URI?,
+            comments: URI?,
             enclosure: Enclosure?,
             guid: GUID?,
             pubDate: RFC_5322.Date?,
@@ -101,15 +101,15 @@ extension RSS {
 
         /// Convenience initializer accepting URI.Representable types
         ///
-        /// Accepts any RFC_3986.URI.Representable type (e.g., RFC_3986.URI) for link and comments.
+        /// Accepts any URI.Representable type (e.g., URI) for link and comments.
         @_disfavoredOverload
         public init(
             title: String? = nil,
             description: String? = nil,
-            link: (any RFC_3986.URI.Representable)? = nil,
+            link: (any URI.Representable)? = nil,
             author: String? = nil,
             categories: [Category] = [],
-            comments: (any RFC_3986.URI.Representable)? = nil,
+            comments: (any URI.Representable)? = nil,
             enclosure: Enclosure? = nil,
             guid: GUID? = nil,
             pubDate: RFC_5322.Date? = nil,

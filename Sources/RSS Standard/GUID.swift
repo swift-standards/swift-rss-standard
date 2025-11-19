@@ -1,4 +1,4 @@
-import RFC_3986
+import URI_Standard
 
 extension RSS {
     /// RSS 2.0 GUID (globally unique identifier)
@@ -15,7 +15,7 @@ extension RSS {
         public init(_ value: String, isPermaLink: Bool = true) throws {
             // Validate that permalinks are valid URIs with a scheme
             if isPermaLink {
-                guard let uri = try? RFC_3986.URI(value), uri.scheme != nil else {
+                guard let uri = try? URI(value), uri.scheme != nil else {
                     throw ValidationError.invalidPermalink(value)
                 }
             }
@@ -29,7 +29,7 @@ extension RSS {
         /// URIs are always valid permalinks, so this initializer doesn't throw.
         ///
         /// - Parameter uri: The URI to use as the GUID value
-        public init(uri: RFC_3986.URI) {
+        public init(uri: URI) {
             self.value = uri.value
             self.isPermaLink = true
         }

@@ -2,7 +2,7 @@ import Testing
 @testable import RSS_Standard
 @testable import RSS_Standard_iTunes
 @testable import RSS_Standard_Dublin_Core
-import RFC_3986
+import URI_Standard
 import RFC_5322
 
 @Suite
@@ -42,7 +42,7 @@ struct `Extension Tests` {
         let ext = iTunes.ChannelExtension(
             author: "John Doe",
             owner: iTunes.Owner(name: "Jane Smith", email: "jane@example.com"),
-            image: try RFC_3986.URI("https://example.com/art.jpg"),
+            image: try URI("https://example.com/art.jpg"),
             categories: [
                 iTunes.Category(text: "Technology", subcategory: "Podcasting")
             ],

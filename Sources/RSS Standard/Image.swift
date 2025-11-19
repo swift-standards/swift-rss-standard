@@ -1,19 +1,19 @@
-import RFC_3986
+import URI_Standard
 
 extension RSS {
     /// RSS 2.0 Image
     public struct Image: Hashable, Sendable, Codable {
-        public let url: RFC_3986.URI
+        public let url: URI
         public let title: String
-        public let link: RFC_3986.URI
+        public let link: URI
         public let width: Int? // max 144, default 88
         public let height: Int? // max 400, default 31
         public let description: String?
         
         public init(
-            url: RFC_3986.URI,
+            url: URI,
             title: String,
-            link: RFC_3986.URI,
+            link: URI,
             width: Int? = nil,
             height: Int? = nil,
             description: String? = nil
@@ -34,9 +34,9 @@ extension RSS {
         }
         
         static func makeUnchecked(
-            url: RFC_3986.URI,
+            url: URI,
             title: String,
-            link: RFC_3986.URI,
+            link: URI,
             width: Int? = nil,
             height: Int? = nil,
             description: String? = nil
@@ -52,12 +52,12 @@ extension RSS {
         }
         /// Convenience initializer accepting URI.Representable types
         ///
-        /// Accepts any RFC_3986.URI.Representable type (e.g., RFC_3986.URI) for url and link.
+        /// Accepts any URI.Representable type (e.g., URI) for url and link.
         @_disfavoredOverload
         public init(
-            url: any RFC_3986.URI.Representable,
+            url: any URI.Representable,
             title: String,
-            link: any RFC_3986.URI.Representable,
+            link: any URI.Representable,
             width: Int? = nil,
             height: Int? = nil,
             description: String? = nil

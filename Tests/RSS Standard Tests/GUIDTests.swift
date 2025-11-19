@@ -1,13 +1,13 @@
 import Testing
 @testable import RSS_Standard
-import RFC_3986
+import URI_Standard
 
 @Suite
 struct `GUID Validation` {
 
     @Test
     func `GUID from URI is a permalink`() throws {
-        let uri = try RFC_3986.URI("https://example.com/post/123")
+        let uri = try URI("https://example.com/post/123")
         let guid = RSS.GUID(uri: uri)
 
         #expect(guid.value == "https://example.com/post/123")

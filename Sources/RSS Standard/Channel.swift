@@ -1,4 +1,4 @@
-import RFC_3986
+import URI_Standard
 import RFC_5322
 
 extension RSS {
@@ -6,7 +6,7 @@ extension RSS {
     public struct Channel: Hashable, Sendable, Codable {
         // Required elements
         public let title: String
-        public let link: RFC_3986.URI
+        public let link: URI
         public let description: String
         
         // Optional elements
@@ -18,7 +18,7 @@ extension RSS {
         public let lastBuildDate: RFC_5322.Date?
         public let categories: [Category]
         public let generator: String?
-        public let docs: RFC_3986.URI?
+        public let docs: URI?
         public let cloud: Cloud?
         public let ttl: Int? // minutes
         public let image: Image?
@@ -33,7 +33,7 @@ extension RSS {
         @_disfavoredOverload
         public init(
             title: String,
-            link: RFC_3986.URI,
+            link: URI,
             description: String,
             language: String? = nil,
             copyright: String? = nil,
@@ -43,7 +43,7 @@ extension RSS {
             lastBuildDate: RFC_5322.Date? = nil,
             categories: [Category] = [],
             generator: String? = nil,
-            docs: RFC_3986.URI? = nil,
+            docs: URI? = nil,
             cloud: Cloud? = nil,
             ttl: Int? = nil,
             image: Image? = nil,
@@ -76,11 +76,11 @@ extension RSS {
 
         /// Convenience initializer accepting URI.Representable types
         ///
-        /// Accepts any RFC_3986.URI.Representable type (e.g., RFC_3986.URI) for link and docs.
+        /// Accepts any URI.Representable type (e.g., URI) for link and docs.
         @_disfavoredOverload
         public init(
             title: String,
-            link: any RFC_3986.URI.Representable,
+            link: any URI.Representable,
             description: String,
             language: String? = nil,
             copyright: String? = nil,
@@ -90,7 +90,7 @@ extension RSS {
             lastBuildDate: RFC_5322.Date? = nil,
             categories: [Category] = [],
             generator: String? = nil,
-            docs: (any RFC_3986.URI.Representable)? = nil,
+            docs: (any URI.Representable)? = nil,
             cloud: Cloud? = nil,
             ttl: Int? = nil,
             image: Image? = nil,

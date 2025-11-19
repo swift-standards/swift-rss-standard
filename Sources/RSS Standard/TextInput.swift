@@ -1,4 +1,4 @@
-import RFC_3986
+import URI_Standard
 
 extension RSS {
     /// RSS 2.0 TextInput
@@ -6,9 +6,9 @@ extension RSS {
         public let title: String
         public let description: String
         public let name: String
-        public let link: RFC_3986.URI
+        public let link: URI
         
-        public init(title: String, description: String, name: String, link: RFC_3986.URI) {
+        public init(title: String, description: String, name: String, link: URI) {
             self.title = title
             self.description = description
             self.name = name
@@ -17,9 +17,9 @@ extension RSS {
 
         /// Convenience initializer accepting URI.Representable type
         ///
-        /// Accepts any RFC_3986.URI.Representable type (e.g., RFC_3986.URI) for link.
+        /// Accepts any URI.Representable type (e.g., URI) for link.
         @_disfavoredOverload
-        public init(title: String, description: String, name: String, link: any RFC_3986.URI.Representable) {
+        public init(title: String, description: String, name: String, link: any URI.Representable) {
             self.init(title: title, description: description, name: name, link: link.uri)
         }
     }

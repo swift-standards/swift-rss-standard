@@ -1,13 +1,13 @@
 import Testing
 @testable import RSS_Standard
-import RFC_3986
+import URI_Standard
 
 @Suite
 struct `URI.Representable Integration Tests` {
 
     @Test
-    func `Channel with RFC_3986.URI works`() throws {
-        let uri: RFC_3986.URI = "https://example.com"
+    func `Channel with URI works`() throws {
+        let uri: URI = "https://example.com"
         let channel = RSS.Channel(
             title: "Test",
             link: uri,
@@ -18,8 +18,8 @@ struct `URI.Representable Integration Tests` {
     }
 
     @Test
-    func `Item with RFC_3986.URI works`() throws {
-        let uri: RFC_3986.URI = "https://example.com/item"
+    func `Item with URI works`() throws {
+        let uri: URI = "https://example.com/item"
         let item = try RSS.Item(
             title: "Test Item",
             link: uri
@@ -29,8 +29,8 @@ struct `URI.Representable Integration Tests` {
     }
 
     @Test
-    func `Enclosure with RFC_3986.URI works`() {
-        let uri: RFC_3986.URI = "https://example.com/media.mp3"
+    func `Enclosure with URI works`() {
+        let uri: URI = "https://example.com/media.mp3"
         let enclosure = RSS.Enclosure(
             url: uri,
             length: 1024,
