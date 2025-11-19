@@ -1,0 +1,17 @@
+[0/1] Planning build
+Building for debugging...
+[0/5] Write sources
+[4/5] Write swift-version--58304C5D6DBC2206.txt
+[6/9] Compiling RFC_3986 RFC_3986.swift
+<unknown>:0: error: PCH was compiled with module cache path '/Users/coen/Developer/swift-web-standards/swift-rss-types/.build/arm64-apple-macosx/debug/ModuleCache/DA4KHCNTCSVR', but the path is currently '/Users/coen/Developer/swift-standards/swift-rss-standard/.build/arm64-apple-macosx/debug/ModuleCache/DA4KHCNTCSVR'
+<unknown>:0: error: missing required module 'SwiftShims'
+[7/9] Compiling RFC_3986 CharacterSets.swift
+<unknown>:0: error: PCH was compiled with module cache path '/Users/coen/Developer/swift-web-standards/swift-rss-types/.build/arm64-apple-macosx/debug/ModuleCache/DA4KHCNTCSVR', but the path is currently '/Users/coen/Developer/swift-standards/swift-rss-standard/.build/arm64-apple-macosx/debug/ModuleCache/DA4KHCNTCSVR'
+<unknown>:0: error: missing required module 'SwiftShims'
+[8/9] Compiling RFC_3986 URI.swift
+<unknown>:0: error: PCH was compiled with module cache path '/Users/coen/Developer/swift-web-standards/swift-rss-types/.build/arm64-apple-macosx/debug/ModuleCache/DA4KHCNTCSVR', but the path is currently '/Users/coen/Developer/swift-standards/swift-rss-standard/.build/arm64-apple-macosx/debug/ModuleCache/DA4KHCNTCSVR'
+<unknown>:0: error: missing required module 'SwiftShims'
+error: emit-module command failed with exit code 1 (use -v to see invocation)
+[9/9] Emitting module RFC_3986
+<unknown>:0: error: PCH was compiled with module cache path '/Users/coen/Developer/swift-web-standards/swift-rss-types/.build/arm64-apple-macosx/debug/ModuleCache/DA4KHCNTCSVR', but the path is currently '/Users/coen/Developer/swift-standards/swift-rss-standard/.build/arm64-apple-macosx/debug/ModuleCache/DA4KHCNTCSVR'
+<unknown>:0: error: missing required module 'SwiftShims'
