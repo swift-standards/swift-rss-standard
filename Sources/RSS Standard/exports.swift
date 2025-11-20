@@ -6,3 +6,4 @@
 //
 
 @_exported import URI_Standard
+@_exported import RFC_5322
