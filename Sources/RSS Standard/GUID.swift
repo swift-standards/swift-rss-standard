@@ -16,7 +16,7 @@ extension RSS {
             // Validate that permalinks are valid URIs with a scheme
             if isPermaLink {
                 guard let uri = try? URI(value), uri.scheme != nil else {
-                    throw ValidationError.invalidPermalink(value)
+                    throw Error.invalidPermalink(value)
                 }
             }
 

@@ -1,4 +1,5 @@
 import Testing
+import Foundation
 @testable import RSS_Standard
 import URI_Standard
 

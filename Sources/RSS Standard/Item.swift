@@ -32,7 +32,7 @@ extension RSS {
         ) throws {
             // Validation: at least one of title or description required
             guard title != nil || description != nil else {
-                throw ValidationError.itemRequiresTitleOrDescription
+                throw Error.itemRequiresTitleOrDescription
             }
             
             self.title = title

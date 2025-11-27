@@ -19,10 +19,10 @@ extension RSS {
             description: String? = nil
         ) throws {
             if let width = width, width > 144 {
-                throw ValidationError.imageWidthExceedsMaximum(width)
+                throw Error.imageWidthExceedsMaximum(width)
             }
             if let height = height, height > 400 {
-                throw ValidationError.imageHeightExceedsMaximum(height)
+                throw Error.imageHeightExceedsMaximum(height)
             }
             
             self.url = url

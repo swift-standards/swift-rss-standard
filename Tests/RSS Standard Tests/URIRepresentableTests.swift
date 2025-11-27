@@ -7,7 +7,7 @@ struct `URI.Representable Integration Tests` {
 
     @Test
     func `Channel with URI works`() throws {
-        let uri: URI = "https://example.com"
+        let uri: URI = try .init("https://example.com")
         let channel = RSS.Channel(
             title: "Test",
             link: uri,
@@ -19,7 +19,7 @@ struct `URI.Representable Integration Tests` {
 
     @Test
     func `Item with URI works`() throws {
-        let uri: URI = "https://example.com/item"
+        let uri: URI = try .init("https://example.com/item")
         let item = try RSS.Item(
             title: "Test Item",
             link: uri
@@ -29,8 +29,8 @@ struct `URI.Representable Integration Tests` {
     }
 
     @Test
-    func `Enclosure with URI works`() {
-        let uri: URI = "https://example.com/media.mp3"
+    func `Enclosure with URI works`() throws {
+        let uri: URI = try .init("https://example.com/media.mp3")
         let enclosure = RSS.Enclosure(
             url: uri,
             length: 1024,
