@@ -99,7 +99,7 @@ struct `RSS Channel Tests` {
         #expect(item3.description == "Description")
 
         // Should fail with neither
-        #expect(throws: RSS.ValidationError.itemRequiresTitleOrDescription) {
+        #expect(throws: RSS.Error.itemRequiresTitleOrDescription) {
             try RSS.Item()
         }
     }
@@ -118,7 +118,7 @@ struct `RSS Channel Tests` {
         #expect(validImage.height == 31)
 
         // Width exceeds maximum
-        #expect(throws: RSS.ValidationError.imageWidthExceedsMaximum(145)) {
+        #expect(throws: RSS.Error.imageWidthExceedsMaximum(145)) {
             try RSS.Image(
                 url: try URI("https://example.com/logo.png"),
                 title: "Logo",
@@ -128,7 +128,7 @@ struct `RSS Channel Tests` {
         }
 
         // Height exceeds maximum
-        #expect(throws: RSS.ValidationError.imageHeightExceedsMaximum(401)) {
+        #expect(throws: RSS.Error.imageHeightExceedsMaximum(401)) {
             try RSS.Image(
                 url: try URI("https://example.com/logo.png"),
                 title: "Logo",

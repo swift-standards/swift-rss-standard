@@ -25,7 +25,7 @@ struct `GUID Validation` {
 
     @Test
     func `Invalid permalink string throws`() {
-        #expect(throws: RSS.ValidationError.self) {
+        #expect(throws: RSS.Error.self) {
             try RSS.GUID("not a valid url", isPermaLink: true)
         }
     }
@@ -51,8 +51,8 @@ struct `GUID Validation` {
     func `GUID validation error message`() {
         do {
             _ = try RSS.GUID("invalid url!", isPermaLink: true)
-            Issue.record("Expected ValidationError to be thrown")
-        } catch let error as RSS.ValidationError {
+            Issue.record("Expected Error to be thrown")
+        } catch let error as RSS.Error {
             switch error {
             case .invalidPermalink(let value):
                 #expect(value == "invalid url!")
@@ -60,7 +60,7 @@ struct `GUID Validation` {
                 Issue.record("Expected invalidPermalink error")
             }
         } catch {
-            Issue.record("Expected RSS.ValidationError, got \(type(of: error))")
+            Issue.record("Expected RSS.Error, got \(type(of: error))")
         }
     }
 }
