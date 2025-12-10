@@ -3,5 +3,8 @@
 
 parent_config: https://raw.githubusercontent.com/swift-standards/swift-standards/main/.swiftlint.yml
 
-# Package-specific overrides (if needed)
-# Add any swift-rss-standard specific rules here
+# Package-specific overrides
+# RSS 2.0 spec uses "webMaster" as a field name - this is part of the standard
+inclusive_language:
+  override_allowed_terms:
+    - webMaster

@@ -19,13 +19,3 @@ extension RSS {
     }
 }
 
-//
-//extension RSS.Enclosure {
-//    /// Convenience initializer accepting URI.Representable type
-//    ///
-//    /// Accepts any URI.Representable type (e.g., URI) for url.
-//    @_disfavoredOverload
-//    public init(url: any URI.Representable, length: Int, type: String) {
-//        self.init(url: url.uri, length: length, type: type)
-//    }
-//}
