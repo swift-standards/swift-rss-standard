@@ -1,4 +1,3 @@
-
 extension RSS {
     /// Represents a day of the week for RSS skipDays element
     public enum Weekday: String, Hashable, Sendable, Codable, CaseIterable {

@@ -6,10 +6,10 @@ extension RSS {
         public let url: URI
         public let title: String
         public let link: URI
-        public let width: Int? // max 144, default 88
-        public let height: Int? // max 400, default 31
+        public let width: Int?  // max 144, default 88
+        public let height: Int?  // max 400, default 31
         public let description: String?
-        
+
         public init(
             url: URI,
             title: String,
@@ -24,7 +24,7 @@ extension RSS {
             if let height = height, height > 400 {
                 throw Error.imageHeightExceedsMaximum(height)
             }
-            
+
             self.url = url
             self.title = title
             self.link = link
@@ -32,7 +32,7 @@ extension RSS {
             self.height = height
             self.description = description
         }
-        
+
         static func makeUnchecked(
             url: URI,
             title: String,

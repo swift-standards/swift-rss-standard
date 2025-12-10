@@ -1,8 +1,7 @@
-
 extension RSS {
     /// RSS 2.0 Category
     public struct Category: Hashable, Sendable, Codable {
-        public let domain: String? // optional URI
+        public let domain: String?  // optional URI
         public let value: String
 
         @_disfavoredOverload

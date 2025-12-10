@@ -1,7 +1,8 @@
-import Testing
-@testable import RSS_Standard
-import URI_Standard
 import RFC_5322
+import Testing
+import URI_Standard
+
+@testable import RSS_Standard
 
 @Suite
 struct `RSS Channel Tests` {
@@ -21,7 +22,14 @@ struct `RSS Channel Tests` {
 
     @Test
     func `Channel with optional fields`() async throws {
-        let pubDate = try RFC_5322.Date(year: 2025, month: 1, day: 1, hour: 12, minute: 0, second: 0)
+        let pubDate = try RFC_5322.Date(
+            year: 2025,
+            month: 1,
+            day: 1,
+            hour: 12,
+            minute: 0,
+            second: 0
+        )
         let channel = RSS.Channel(
             title: "Test Feed",
             link: try URI("https://example.com"),
@@ -70,7 +78,7 @@ struct `RSS Channel Tests` {
             description: "A test feed",
             categories: [
                 RSS.Category(domain: "https://example.com/categories", value: "Technology"),
-                RSS.Category(value: "News")
+                RSS.Category(value: "News"),
             ]
         )
 

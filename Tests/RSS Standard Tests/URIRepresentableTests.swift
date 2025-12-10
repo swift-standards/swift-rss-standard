@@ -1,6 +1,7 @@
 import Testing
-@testable import RSS_Standard
 import URI_Standard
+
+@testable import RSS_Standard
 
 @Suite
 struct `URI.Representable Integration Tests` {

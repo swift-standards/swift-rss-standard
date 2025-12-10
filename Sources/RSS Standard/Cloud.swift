@@ -1,4 +1,3 @@
-
 extension RSS {
     /// RSS 2.0 Cloud (publish-subscribe)
     public struct Cloud: Hashable, Sendable, Codable {
@@ -9,7 +8,13 @@ extension RSS {
         public let `protocol`: CloudProtocol
 
         @_disfavoredOverload
-        public init(domain: String, port: Int, path: String, registerProcedure: String, protocol: CloudProtocol) {
+        public init(
+            domain: String,
+            port: Int,
+            path: String,
+            registerProcedure: String,
+            protocol: CloudProtocol
+        ) {
             self.domain = domain
             self.port = port
             self.path = path

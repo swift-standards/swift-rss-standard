@@ -1,5 +1,5 @@
-public import URI_Standard
 public import RFC_5322
+public import URI_Standard
 
 extension RSS {
     /// RSS 2.0 Channel (top-level feed container)
@@ -8,28 +8,28 @@ extension RSS {
         public let title: String
         public let link: URI
         public let description: String
-        
+
         // Optional elements
         public let language: String?
         public let copyright: String?
-        public let managingEditor: String? // email
-        public let webMaster: String? // email
+        public let managingEditor: String?  // email
+        public let webMaster: String?  // email
         public let pubDate: RFC_5322.Date?
         public let lastBuildDate: RFC_5322.Date?
         public let categories: [Category]
         public let generator: String?
         public let docs: URI?
         public let cloud: Cloud?
-        public let ttl: Int? // minutes
+        public let ttl: Int?  // minutes
         public let image: Image?
         public private(set) var rating: String?
         public let textInput: TextInput?
         public let skipHours: Set<Hour>?
         public let skipDays: [Weekday]?
-        
+
         // Items
         public let items: [Item]
-        
+
         @_disfavoredOverload
         public init(
             title: String,

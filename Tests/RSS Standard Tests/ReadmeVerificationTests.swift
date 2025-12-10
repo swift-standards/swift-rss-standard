@@ -1,8 +1,9 @@
+import RFC_5322
 import Testing
+import URI_Standard
+
 @testable import RSS_Standard
 @testable import RSS_Standard_iTunes
-import URI_Standard
-import RFC_5322
 
 @Suite
 struct `README Verification` {
@@ -50,7 +51,7 @@ struct `README Verification` {
                     description: "Building on the basics...",
                     link: try URI("https://example.com/episode2"),
                     pubDate: try RFC_5322.Date(year: 2025, month: 1, day: 1)
-                )
+                ),
             ]
         )
 

@@ -1,4 +1,3 @@
-
 extension RSS {
     /// Represents a cloud protocol for RSS publish-subscribe
     public struct CloudProtocol: Hashable, Sendable {

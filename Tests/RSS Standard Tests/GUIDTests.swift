@@ -1,7 +1,8 @@
-import Testing
 import Foundation
-@testable import RSS_Standard
+import Testing
 import URI_Standard
+
+@testable import RSS_Standard
 
 @Suite
 struct `GUID Validation` {
@@ -44,7 +45,7 @@ struct `GUID Validation` {
         let guid: RSS.GUID = "tag:example.com,2025:post-123"
 
         #expect(guid.value == "tag:example.com,2025:post-123")
-        #expect(guid.isPermaLink == true) // Default for string literals
+        #expect(guid.isPermaLink == true)  // Default for string literals
     }
 
     @Test
@@ -85,8 +86,8 @@ struct `GUID Codable` {
         // Decoding should succeed even with invalid permalink
         // (for compatibility with existing data)
         let json = """
-        {"value":"not a url","isPermaLink":true}
-        """
+            {"value":"not a url","isPermaLink":true}
+            """
         let decoder = JSONDecoder()
         let guid = try decoder.decode(RSS.GUID.self, from: json.data(using: .utf8)!)
 

@@ -1,9 +1,10 @@
-import Testing
-@testable import RSS_Standard
-@testable import RSS_Standard_iTunes
-@testable import RSS_Standard_Dublin_Core
-import URI_Standard
 import RFC_5322
+import Testing
+import URI_Standard
+
+@testable import RSS_Standard
+@testable import RSS_Standard_Dublin_Core
+@testable import RSS_Standard_iTunes
 
 @Suite
 struct `Extension Tests` {
@@ -14,30 +15,30 @@ struct `Extension Tests` {
         #expect(duration1?.minutes == 30)
         #expect(duration1?.seconds == 45)
         #expect(duration1?.totalSeconds == 5445)
-        
+
         // Test MM:SS format
         let duration2 = iTunes.Duration(string: "45:30")
         #expect(duration2?.hours == nil)
         #expect(duration2?.minutes == 45)
         #expect(duration2?.seconds == 30)
         #expect(duration2?.totalSeconds == 2730)
-        
+
         // Test SS format
         let duration3 = iTunes.Duration(string: "90")
         #expect(duration3?.totalSeconds == 90)
     }
-    
+
     @Test func iTunesDurationFormatting() async throws {
         let duration1 = iTunes.Duration(hours: 1, minutes: 30, seconds: 45)
         #expect(duration1.formatted == "1:30:45")
-        
+
         let duration2 = iTunes.Duration(hours: nil, minutes: 5, seconds: 30)
         #expect(duration2.formatted == "5:30")
-        
+
         let duration3 = iTunes.Duration(totalSeconds: 3665)
         #expect(duration3.formatted == "1:01:05")
     }
-    
+
     @Test func iTunesChannelExtension() async throws {
         let ext = iTunes.ChannelExtension(
             author: "John Doe",
@@ -49,13 +50,13 @@ struct `Extension Tests` {
             explicit: false,
             type: .episodic
         )
-        
+
         #expect(ext.author == "John Doe")
         #expect(ext.owner?.name == "Jane Smith")
         #expect(ext.categories.count == 1)
         #expect(ext.type == .episodic)
     }
-    
+
     @Test func iTunesItemExtension() async throws {
         let duration = iTunes.Duration(hours: 0, minutes: 45, seconds: 30)
         let ext = iTunes.ItemExtension(
@@ -64,13 +65,13 @@ struct `Extension Tests` {
             season: 1,
             episode: 5
         )
-        
+
         #expect(ext.duration?.totalSeconds == 2730)
         #expect(ext.episodeType == .full)
         #expect(ext.season == 1)
         #expect(ext.episode == 5)
     }
-    
+
     @Test func dublinCoreMetadata() async throws {
         let metadata = DublinCore.Metadata(
             creator: ["Alice", "Bob"],

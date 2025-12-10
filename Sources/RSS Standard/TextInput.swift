@@ -7,7 +7,7 @@ extension RSS {
         public let description: String
         public let name: String
         public let link: URI
-        
+
         public init(title: String, description: String, name: String, link: URI) {
             self.title = title
             self.description = description

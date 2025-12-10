@@ -6,23 +6,23 @@ extension iTunes {
         public let hours: Int?
         public let minutes: Int
         public let seconds: Int
-        
+
         public init(hours: Int? = nil, minutes: Int, seconds: Int) {
             self.hours = hours
             self.minutes = minutes
             self.seconds = seconds
         }
-        
+
         public init(totalSeconds: Int) {
             self.hours = totalSeconds >= 3600 ? totalSeconds / 3600 : nil
             self.minutes = (totalSeconds % 3600) / 60
             self.seconds = totalSeconds % 60
         }
-        
+
         public var totalSeconds: Int {
             (hours ?? 0) * 3600 + minutes * 60 + seconds
         }
-        
+
         public var formatted: String {
             if let hours = hours {
                 let mm = minutes.formatted(.decimal.zeroPadded(width: 2))
@@ -33,7 +33,7 @@ extension iTunes {
                 return "\(minutes):\(ss)"
             }
         }
-        
+
         /// Parse duration from string (format: HH:MM:SS or MM:SS or SS)
         public init?(string: String) {
             let components = string.split(separator: ":").map(String.init)
@@ -47,14 +47,16 @@ extension iTunes {
             case 2:
                 // MM:SS
                 guard let minutes = Int(components[0]),
-                      let seconds = Int(components[1]) else { return nil }
+                    let seconds = Int(components[1])
+                else { return nil }
                 self.init(hours: nil, minutes: minutes, seconds: seconds)
 
             case 3:
                 // HH:MM:SS
                 guard let hours = Int(components[0]),
-                      let minutes = Int(components[1]),
-                      let seconds = Int(components[2]) else { return nil }
+                    let minutes = Int(components[1]),
+                    let seconds = Int(components[2])
+                else { return nil }
                 self.init(hours: hours, minutes: minutes, seconds: seconds)
 
             default:

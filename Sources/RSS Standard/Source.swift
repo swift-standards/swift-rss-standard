@@ -4,8 +4,8 @@ extension RSS {
     /// RSS 2.0 Source (original channel for syndicated content)
     public struct Source: Hashable, Sendable, Codable {
         public let url: URI
-        public let value: String // channel title
-        
+        public let value: String  // channel title
+
         public init(url: URI, value: String) {
             self.url = url
             self.value = value

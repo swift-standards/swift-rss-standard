@@ -1,5 +1,5 @@
-public import URI_Standard
 public import RFC_5322
+public import URI_Standard
 
 extension RSS {
     /// RSS 2.0 Item (individual entry)
@@ -7,17 +7,17 @@ extension RSS {
         // At least one of title or description required (validation in init)
         public let title: String?
         public let description: String?
-        
+
         // Optional elements
         public let link: URI?
-        public let author: String? // email
+        public let author: String?  // email
         public let categories: [Category]
         public let comments: URI?
         public let enclosure: Enclosure?
         public let guid: GUID?
         public let pubDate: RFC_5322.Date?
         public let source: Source?
-        
+
         public init(
             title: String? = nil,
             description: String? = nil,
@@ -34,7 +34,7 @@ extension RSS {
             guard title != nil || description != nil else {
                 throw Error.itemRequiresTitleOrDescription
             }
-            
+
             self.title = title
             self.description = description
             self.link = link
@@ -46,7 +46,7 @@ extension RSS {
             self.pubDate = pubDate
             self.source = source
         }
-        
+
         static func makeUnchecked(
             title: String? = nil,
             description: String? = nil,
@@ -73,7 +73,7 @@ extension RSS {
                 unchecked: ()
             )
         }
-        
+
         private init(
             title: String?,
             description: String?,

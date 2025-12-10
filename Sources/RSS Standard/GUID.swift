@@ -4,7 +4,7 @@ extension RSS {
     /// RSS 2.0 GUID (globally unique identifier)
     public struct GUID: Hashable, Sendable {
         public let value: String
-        public let isPermaLink: Bool // default true
+        public let isPermaLink: Bool  // default true
 
         /// Creates a GUID with string value and validation
         ///

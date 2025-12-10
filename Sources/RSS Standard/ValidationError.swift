@@ -1,4 +1,3 @@
-
 extension RSS {
     public enum Error: Swift.Error, Sendable, Equatable {
         case itemRequiresTitleOrDescription

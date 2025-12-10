@@ -1,4 +1,3 @@
-
 extension RSS {
     /// Represents an hour in GMT (0-23) for RSS skipHours element
     public struct Hour: Hashable, Sendable, Comparable {
