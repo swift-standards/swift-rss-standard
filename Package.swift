@@ -31,8 +31,8 @@ let package = Package(
         .library(name: .rssDublinCore, targets: [.rssDublinCore]),
     ],
     dependencies: [
-        .package(url: "https://github.com/swift-standards/swift-uri-standard", from: "0.1.1"),
-        .package(url: "https://github.com/swift-standards/swift-rfc-5322", from: "0.7.0"),
+        .package(url: "https://github.com/swift-standards/swift-uri-standard", from: "0.1.2"),
+        .package(url: "https://github.com/swift-standards/swift-rfc-5322", from: "0.7.1"),
         .package(url: "https://github.com/swift-standards/swift-standards", from: "0.10.0")
     ],
     targets: [
