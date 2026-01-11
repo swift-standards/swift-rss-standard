@@ -15,6 +15,7 @@ extension Target.Dependency {
     static var uriStandard: Self { .product(name: "URI Standard", package: "swift-uri-standard") }
     static var rfc5322: Self { .product(name: "RFC 5322", package: "swift-rfc-5322") }
     static var standards: Self { .product(name: "Standard Library Extensions", package: "swift-standard-library-extensions") }
+    static var binary: Self { .product(name: "Binary Primitives", package: "swift-binary-primitives") }
 }
 
 let package = Package(
@@ -33,7 +34,8 @@ let package = Package(
     dependencies: [
         .package(path: "../swift-uri-standard"),
         .package(path: "../swift-rfc-5322"),
-        .package(path: "../../swift-primitives/swift-standard-library-extensions")
+        .package(path: "../../swift-primitives/swift-standard-library-extensions"),
+        .package(path: "../../swift-primitives/swift-binary-primitives"),
     ],
     targets: [
         .target(
@@ -42,7 +44,7 @@ let package = Package(
         ),
         .target(
             name: .rssITunes,
-            dependencies: [.rss, .standards]
+            dependencies: [.rss, .standards, .binary]
         ),
         .target(
             name: .rssDublinCore,
