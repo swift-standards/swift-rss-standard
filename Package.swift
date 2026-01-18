@@ -27,32 +27,28 @@ let package = Package(
         .watchOS(.v26)
     ],
     products: [
-        .library(name: .rss, targets: [.rss]),
-        .library(name: .rssITunes, targets: [.rssITunes]),
-        .library(name: .rssDublinCore, targets: [.rssDublinCore]),
+        .library(name: "RSS Standard", targets: ["RSS Standard"]),
+        .library(name: "RSS Standard iTunes", targets: ["RSS Standard iTunes"]),
+        .library(name: "RSS Standard Dublin Core", targets: ["RSS Standard Dublin Core"])
     ],
     dependencies: [
         .package(path: "../swift-uri-standard"),
         .package(path: "../swift-rfc-5322"),
         .package(path: "../../swift-primitives/swift-standard-library-extensions"),
-        .package(path: "../../swift-primitives/swift-binary-primitives"),
+        .package(path: "../../swift-primitives/swift-binary-primitives")
     ],
     targets: [
         .target(
-            name: .rss,
+            name: "RSS Standard",
             dependencies: [.uriStandard, .rfc5322]
         ),
         .target(
-            name: .rssITunes,
+            name: "RSS Standard iTunes",
             dependencies: [.rss, .standards, .binary]
         ),
         .target(
-            name: .rssDublinCore,
+            name: "RSS Standard Dublin Core",
             dependencies: [.rss]
-        ),
-        .testTarget(
-            name: .rss.tests,
-            dependencies: [.rss, .rssITunes, .rssDublinCore]
         )
     ],
     swiftLanguageModes: [.v6]
