@@ -17,12 +17,12 @@ extension RSS {
             width: Int? = nil,
             height: Int? = nil,
             description: String? = nil
-        ) throws {
+        ) throws(Error) {
             if let width = width, width > 144 {
-                throw Error.imageWidthExceedsMaximum(width)
+                throw .imageWidthExceedsMaximum(width)
             }
             if let height = height, height > 400 {
-                throw Error.imageHeightExceedsMaximum(height)
+                throw .imageHeightExceedsMaximum(height)
             }
 
             self.url = url
@@ -61,7 +61,7 @@ extension RSS {
             width: Int? = nil,
             height: Int? = nil,
             description: String? = nil
-        ) throws {
+        ) throws(Error) {
             try self.init(
                 url: url.uri,
                 title: title,

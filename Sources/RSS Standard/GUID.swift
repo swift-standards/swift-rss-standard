@@ -12,7 +12,7 @@ extension RSS {
         ///   - value: The GUID value
         ///   - isPermaLink: Whether this GUID is a permalink (default: true per RSS spec)
         /// - Throws: ValidationError.invalidPermalink if isPermaLink is true but value is not a valid URI with scheme
-        public init(_ value: String, isPermaLink: Bool = true) throws {
+        public init(_ value: String, isPermaLink: Bool = true) throws(Error) {
             // Validate that permalinks are valid URIs with a scheme
             if isPermaLink {
                 guard let uri = try? URI(value), uri.scheme != nil else {

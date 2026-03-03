@@ -29,10 +29,10 @@ extension RSS {
             guid: GUID? = nil,
             pubDate: RFC_5322.Date? = nil,
             source: Source? = nil
-        ) throws {
+        ) throws(Error) {
             // Validation: at least one of title or description required
             guard title != nil || description != nil else {
-                throw Error.itemRequiresTitleOrDescription
+                throw .itemRequiresTitleOrDescription
             }
 
             self.title = title
@@ -114,7 +114,7 @@ extension RSS {
             guid: GUID? = nil,
             pubDate: RFC_5322.Date? = nil,
             source: Source? = nil
-        ) throws {
+        ) throws(Error) {
             try self.init(
                 title: title,
                 description: description,
