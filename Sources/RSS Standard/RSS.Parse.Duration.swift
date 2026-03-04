@@ -43,7 +43,6 @@ extension RSS.Parse.Duration {
 }
 
 extension RSS.Parse.Duration: Parser.`Protocol` {
-    public typealias ParseOutput = Output
     public typealias Failure = RSS.Parse.Duration<Input>.Error
 
     @inlinable
