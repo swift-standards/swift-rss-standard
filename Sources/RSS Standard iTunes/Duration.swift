@@ -37,23 +37,29 @@ extension iTunes {
 
         /// Parse duration from string (format: HH:MM:SS or MM:SS or SS)
         public init?(string: String) {
-            let components = string.split(separator: ":").map(String.init)
+            let bytes = Array(string.utf8)
+            var components: [String] = []
+            var start = 0
+            for idx in 0..<bytes.count {
+                if bytes[idx] == 0x3A {  // ':'
+                    components.append(String(decoding: bytes[start..<idx], as: UTF8.self))
+                    start = idx &+ 1
+                }
+            }
+            components.append(String(decoding: bytes[start..<bytes.count], as: UTF8.self))
 
             switch components.count {
             case 1:
-                // Just seconds
                 guard let seconds = Int(components[0]) else { return nil }
                 self.init(totalSeconds: seconds)
 
             case 2:
-                // MM:SS
                 guard let minutes = Int(components[0]),
                     let seconds = Int(components[1])
                 else { return nil }
                 self.init(hours: nil, minutes: minutes, seconds: seconds)
 
             case 3:
-                // HH:MM:SS
                 guard let hours = Int(components[0]),
                     let minutes = Int(components[1]),
                     let seconds = Int(components[2])
