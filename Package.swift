@@ -35,12 +35,13 @@ let package = Package(
         .package(path: "../swift-uri-standard"),
         .package(path: "../swift-rfc-5322"),
         .package(path: "../../swift-primitives/swift-standard-library-extensions"),
-        .package(path: "../../swift-primitives/swift-binary-primitives")
+        .package(path: "../../swift-primitives/swift-binary-primitives"),
+        .package(path: "../../swift-primitives/swift-parser-primitives")
     ],
     targets: [
         .target(
             name: "RSS Standard",
-            dependencies: [.uriStandard, .rfc5322]
+            dependencies: [.uriStandard, .rfc5322, .product(name: "Parser Primitives", package: "swift-parser-primitives")]
         ),
         .target(
             name: "RSS Standard iTunes",
