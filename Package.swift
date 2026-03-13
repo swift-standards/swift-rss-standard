@@ -33,7 +33,7 @@ let package = Package(
     ],
     dependencies: [
         .package(path: "../swift-uri-standard"),
-        .package(path: "../swift-rfc-5322"),
+        .package(path: "../../swift-ietf/swift-rfc-5322"),
         .package(path: "../../swift-primitives/swift-standard-library-extensions"),
         .package(path: "../../swift-primitives/swift-binary-primitives"),
         .package(path: "../../swift-primitives/swift-parser-primitives")
