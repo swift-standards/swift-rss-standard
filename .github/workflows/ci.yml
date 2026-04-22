@@ -2,64 +2,37 @@ name: CI
 
 on:
   push:
-    branches: [ main ]
+    branches:
+      - main
   pull_request:
-    branches: [ main ]
+    branches:
+      - main
+  workflow_dispatch:
+
+concurrency:
+  group: ci-${{ github.ref }}
+  cancel-in-progress: true
 
 jobs:
-  macos:
-    name: macOS (Xcode 16.0, Swift 6.0)
-    runs-on: macos-26
-    steps:
-      - uses: actions/checkout@v4
-      - name: Select Xcode 16.0
-        run: sudo xcode-select -s /Applications/Xcode_16.0.app
-      - name: Swift version
-        run: swift --version
-      - name: Build
-        run: swift build
-      - name: Run tests
-        run: swift test
+  # Build + test matrix — see swift-institute/.github/.github/workflows/swift-ci.yml
+  ci:
+    uses: swift-institute/.github/.github/workflows/swift-ci.yml@v1
+    with:
+      cache-key-prefix: swift63-spm-v1
+      enable-private-repos: true
+    secrets:
+      PRIVATE_REPO_TOKEN: ${{ secrets.PRIVATE_REPO_TOKEN }}
 
-  macos-swift-6-2:
-    name: macOS (Xcode 16.2, Swift 6.2)
-    runs-on: macos-26
-    steps:
-      - uses: actions/checkout@v4
-      - name: Select Xcode 16.2
-        run: sudo xcode-select -s /Applications/Xcode_26.0.app
-      - name: Swift version
-        run: swift --version
-      - name: Build
-        run: swift build
-      - name: Run tests
-        run: swift test
-
-  linux:
-    name: Linux (Swift 6.0)
-    runs-on: ubuntu-latest
-    container: swift:6.0
-    steps:
-      - uses: actions/checkout@v4
-      - name: Swift version
-        run: swift --version
-      - name: Build
-        run: swift build
-      - name: Run tests
-        run: swift test
-
-  windows:
-    name: Windows (Swift 6.0)
-    runs-on: windows-latest
-    steps:
-      - uses: actions/checkout@v4
-      - uses: compnerd/gha-setup-swift@main
-        with:
-          branch: swift-6.0-release
-          tag: 6.0-RELEASE
-      - name: Swift version
-        run: swift --version
-      - name: Build
-        run: swift build
-      - name: Run tests
-        run: swift test
+  # DocC umbrella-catalog pipeline per [DOC-019a] — see
+  # swift-institute/.github/.github/workflows/swift-docs.yml
+  docs:
+    uses: swift-institute/.github/.github/workflows/swift-docs.yml@v1
+    with:
+      umbrella-module: RSS_Standard
+      umbrella-display-name: "RSS Standard"
+      umbrella-bundle-id: "swift-rss-standard.RSS-Standard"
+      umbrella-docc-path: "Sources/RSS Standard/RSS Standard.docc"
+      exclude-modules: ""
+      enable-private-repos: true
+    secrets:
+      PRIVATE_REPO_TOKEN: ${{ secrets.PRIVATE_REPO_TOKEN }}

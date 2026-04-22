@@ -2,17 +2,21 @@ name: SwiftLint
 
 on:
   push:
-    branches: [ main ]
+    branches:
+      - main
   pull_request:
-    branches: [ main ]
+    branches:
+      - main
+  workflow_dispatch:
+
+concurrency:
+  group: swiftlint-${{ github.ref }}
+  cancel-in-progress: true
 
 jobs:
-  swiftlint:
-    name: SwiftLint Check
-    runs-on: macos-15
-    steps:
-      - uses: actions/checkout@v4
-      - name: Install SwiftLint
-        run: brew install swiftlint
-      - name: Run SwiftLint
-        run: swiftlint lint --strict
+  # SwiftLint strict — see
+  # swift-institute/.github/.github/workflows/swiftlint.yml
+  lint:
+    uses: swift-institute/.github/.github/workflows/swiftlint.yml@v1
+    secrets:
+      PRIVATE_REPO_TOKEN: ${{ secrets.PRIVATE_REPO_TOKEN }}

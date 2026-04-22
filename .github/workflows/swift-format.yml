@@ -2,21 +2,18 @@ name: Swift Format
 
 on:
   push:
-    branches: [ main ]
-  pull_request:
-    branches: [ main ]
+    branches:
+      - main
+  workflow_dispatch:
+
+concurrency:
+  group: swift-format-${{ github.ref }}
+  cancel-in-progress: true
 
 jobs:
-  swift-format:
-    name: Swift Format Check
-    runs-on: macos-15
-    steps:
-      - uses: actions/checkout@v4
-      - name: Select Xcode 16.0
-        run: sudo xcode-select -s /Applications/Xcode_16.0.app
-      - name: Install swift-format
-        run: |
-          brew install swift-format
-      - name: Run swift-format
-        run: |
-          swift-format lint --recursive Sources Tests
+  # swift-format + auto-commit — see
+  # swift-institute/.github/.github/workflows/swift-format.yml
+  format:
+    uses: swift-institute/.github/.github/workflows/swift-format.yml@v1
+    secrets:
+      PRIVATE_REPO_TOKEN: ${{ secrets.PRIVATE_REPO_TOKEN }}
