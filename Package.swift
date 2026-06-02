@@ -32,11 +32,11 @@ let package = Package(
         .library(name: "RSS Standard Dublin Core", targets: ["RSS Standard Dublin Core"])
     ],
     dependencies: [
-        .package(path: "../swift-uri-standard"),
-        .package(path: "../../swift-ietf/swift-rfc-5322"),
-        .package(path: "../../swift-primitives/swift-standard-library-extensions"),
-        .package(path: "../../swift-primitives/swift-binary-primitives"),
-        .package(path: "../../swift-primitives/swift-parser-primitives")
+        .package(url: "https://github.com/swift-standards/swift-uri-standard.git", branch: "main"),
+        .package(url: "https://github.com/swift-ietf/swift-rfc-5322.git", branch: "main"),
+        .package(url: "https://github.com/swift-primitives/swift-standard-library-extensions.git", branch: "main"),
+        .package(url: "https://github.com/swift-primitives/swift-binary-primitives.git", branch: "main"),
+        .package(url: "https://github.com/swift-primitives/swift-parser-primitives.git", branch: "main")
     ],
     targets: [
         .target(
