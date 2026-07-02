@@ -1,6 +1,6 @@
 # .github/metadata.yaml
 # Triaged by AI-assisted bulk pass (2026-04-29).
-description: "Swift standard RSS types."
+description: "RSS 2.0 feed types with iTunes podcast extensions and Dublin Core metadata for Swift."
 topics:
   - standards
   - rss
