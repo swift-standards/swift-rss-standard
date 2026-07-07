@@ -41,6 +41,11 @@ extension RSS {
             height: Int? = nil,
             description: String? = nil
         ) -> Image {
+            // force_try: private construction helper, currently unreferenced
+            // within this module; per the force_try trap-table disposition this
+            // is shielded rather than rewritten (no external callers to verify
+            // width/height are always in-range at every call site).
+            // swiftlint:disable:next force_try
             try! Image(
                 url: url.uri,
                 title: title,

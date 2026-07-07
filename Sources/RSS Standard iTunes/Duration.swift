@@ -1,5 +1,5 @@
-import Standard_Library_Extensions
 import Binary_Primitives
+import Standard_Library_Extensions
 
 extension iTunes {
     /// Duration in hours, minutes, and seconds for podcast episodes
