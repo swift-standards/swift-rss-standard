@@ -16,6 +16,7 @@ extension Target.Dependency {
     static var rfc5322: Self { .product(name: "RFC 5322", package: "swift-rfc-5322") }
     static var standards: Self { .product(name: "Standard Library Extensions", package: "swift-standard-library-extensions") }
     static var binary: Self { .product(name: "Binary Primitives", package: "swift-binary-primitives") }
+    static var radixFormatter: Self { .product(name: "Radix Formatter Primitives", package: "swift-radix-formatter-primitives") }
 }
 
 let package = Package(
@@ -36,7 +37,8 @@ let package = Package(
         .package(url: "https://github.com/swift-ietf/swift-rfc-5322.git", branch: "main"),
         .package(url: "https://github.com/swift-primitives/swift-standard-library-extensions.git", branch: "main"),
         .package(url: "https://github.com/swift-primitives/swift-binary-primitives.git", branch: "main"),
-        .package(url: "https://github.com/swift-primitives/swift-parser-primitives.git", branch: "main")
+        .package(url: "https://github.com/swift-primitives/swift-parser-primitives.git", branch: "main"),
+        .package(url: "https://github.com/swift-primitives/swift-radix-formatter-primitives.git", branch: "main")
     ],
     targets: [
         .target(
@@ -45,7 +47,7 @@ let package = Package(
         ),
         .target(
             name: "RSS Standard iTunes",
-            dependencies: [.rss, .standards, .binary]
+            dependencies: [.rss, .standards, .binary, .radixFormatter]
         ),
         .target(
             name: "RSS Standard Dublin Core",
