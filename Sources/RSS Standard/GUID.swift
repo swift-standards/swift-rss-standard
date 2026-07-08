@@ -34,15 +34,18 @@ extension RSS {
             self.isPermaLink = true
         }
 
-        /// Creates a GUID without validation (for internal use, e.g., decoding)
-        static func makeUnchecked(_ value: String, isPermaLink: Bool = true) -> GUID {
-            GUID(value, isPermaLink, unchecked: ())
-        }
-
         private init(_ value: String, _ isPermaLink: Bool, unchecked: Void) {
             self.value = value
             self.isPermaLink = isPermaLink
         }
+    }
+}
+
+// MARK: - Unchecked Construction
+extension RSS.GUID {
+    /// Creates a GUID without validation (for internal use, e.g., decoding)
+    static func makeUnchecked(_ value: String, isPermaLink: Bool = true) -> RSS.GUID {
+        RSS.GUID(value, isPermaLink, unchecked: ())
     }
 }
 

@@ -21,21 +21,6 @@ extension iTunes {
             self.seconds = totalSeconds % 60
         }
 
-        public var totalSeconds: Int {
-            (hours ?? 0) * 3600 + minutes * 60 + seconds
-        }
-
-        public var formatted: String {
-            if let hours = hours {
-                let mm = minutes.formatted(.decimal.zeroPadded(width: 2))
-                let ss = seconds.formatted(.decimal.zeroPadded(width: 2))
-                return "\(hours):\(mm):\(ss)"
-            } else {
-                let ss = seconds.formatted(.decimal.zeroPadded(width: 2))
-                return "\(minutes):\(ss)"
-            }
-        }
-
         /// Parse duration from string (format: HH:MM:SS or MM:SS or SS)
         public init?(string: String) {
             let bytes = Array(string.utf8)
@@ -83,17 +68,35 @@ extension iTunes {
             let totalSeconds = Int(duration.components.seconds)
             self.init(totalSeconds: totalSeconds)
         }
+    }
+}
 
-        /// Convert to Swift.Duration
-        ///
-        /// Example:
-        /// ```swift
-        /// let swiftDuration = itunesDuration.swiftDuration
-        /// ```
-        @available(macOS 13, iOS 16, tvOS 16, watchOS 9, *)
-        public var swiftDuration: Swift.Duration {
-            .seconds(self.totalSeconds)
+// MARK: - Computed Properties
+extension iTunes.Duration {
+    public var totalSeconds: Int {
+        (hours ?? 0) * 3600 + minutes * 60 + seconds
+    }
+
+    public var formatted: String {
+        if let hours = hours {
+            let mm = minutes.formatted(.decimal.zeroPadded(width: 2))
+            let ss = seconds.formatted(.decimal.zeroPadded(width: 2))
+            return "\(hours):\(mm):\(ss)"
+        } else {
+            let ss = seconds.formatted(.decimal.zeroPadded(width: 2))
+            return "\(minutes):\(ss)"
         }
+    }
+
+    /// Convert to Swift.Duration
+    ///
+    /// Example:
+    /// ```swift
+    /// let swiftDuration = itunesDuration.swiftDuration
+    /// ```
+    @available(macOS 13, iOS 16, tvOS 16, watchOS 9, *)
+    public var swiftDuration: Swift.Duration {
+        .seconds(self.totalSeconds)
     }
 }
 

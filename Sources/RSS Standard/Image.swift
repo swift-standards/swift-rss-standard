@@ -33,28 +33,6 @@ extension RSS {
             self.description = description
         }
 
-        static func makeUnchecked(
-            url: URI,
-            title: String,
-            link: URI,
-            width: Int? = nil,
-            height: Int? = nil,
-            description: String? = nil
-        ) -> Image {
-            // force_try: private construction helper, currently unreferenced
-            // within this module; per the force_try trap-table disposition this
-            // is shielded rather than rewritten (no external callers to verify
-            // width/height are always in-range at every call site).
-            // swiftlint:disable:next force_try
-            try! Image(
-                url: url.uri,
-                title: title,
-                link: link,
-                width: width,
-                height: height,
-                description: description
-            )
-        }
         /// Convenience initializer accepting URI.Representable types
         ///
         /// Accepts any URI.Representable type (e.g., URI) for url and link.
@@ -76,5 +54,31 @@ extension RSS {
                 description: description
             )
         }
+    }
+}
+
+// MARK: - Unchecked Construction
+extension RSS.Image {
+    static func makeUnchecked(
+        url: URI,
+        title: String,
+        link: URI,
+        width: Int? = nil,
+        height: Int? = nil,
+        description: String? = nil
+    ) -> RSS.Image {
+        // force_try: private construction helper, currently unreferenced
+        // within this module; per the force_try trap-table disposition this
+        // is shielded rather than rewritten (no external callers to verify
+        // width/height are always in-range at every call site).
+        // swiftlint:disable:next force_try
+        try! RSS.Image(
+            url: url.uri,
+            title: title,
+            link: link,
+            width: width,
+            height: height,
+            description: description
+        )
     }
 }

@@ -6,12 +6,15 @@ extension RSS {
         public init(rawValue: String) {
             self.rawValue = rawValue
         }
-
-        // Standard protocols from RSS 2.0 specification
-        public static let xmlRpc = CloudProtocol(rawValue: "xml-rpc")
-        public static let soap11 = CloudProtocol(rawValue: "soap 1.1")
-        public static let httpPost = CloudProtocol(rawValue: "http-post")
     }
+}
+
+// MARK: - Standard Protocols
+extension RSS.CloudProtocol {
+    // Standard protocols from RSS 2.0 specification
+    public static let xmlRpc = RSS.CloudProtocol(rawValue: "xml-rpc")
+    public static let soap11 = RSS.CloudProtocol(rawValue: "soap 1.1")
+    public static let httpPost = RSS.CloudProtocol(rawValue: "http-post")
 }
 
 // MARK: - RawRepresentable

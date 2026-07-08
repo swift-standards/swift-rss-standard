@@ -8,10 +8,13 @@ extension RSS {
             guard (0...23).contains(value) else { return nil }
             self.value = value
         }
+    }
+}
 
-        public static func < (lhs: Hour, rhs: Hour) -> Bool {
-            lhs.value < rhs.value
-        }
+// MARK: - Comparable
+extension RSS.Hour {
+    public static func < (lhs: RSS.Hour, rhs: RSS.Hour) -> Bool {
+        lhs.value < rhs.value
     }
 }
 

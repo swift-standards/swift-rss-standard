@@ -47,33 +47,6 @@ extension RSS {
             self.source = source
         }
 
-        static func makeUnchecked(
-            title: String? = nil,
-            description: String? = nil,
-            link: URI? = nil,
-            author: String? = nil,
-            categories: [Category] = [],
-            comments: URI? = nil,
-            enclosure: Enclosure? = nil,
-            guid: GUID? = nil,
-            pubDate: RFC_5322.Date? = nil,
-            source: Source? = nil
-        ) -> Item {
-            Item(
-                title: title,
-                description: description,
-                link: link,
-                author: author,
-                categories: categories,
-                comments: comments,
-                enclosure: enclosure,
-                guid: guid,
-                pubDate: pubDate,
-                source: source,
-                unchecked: ()
-            )
-        }
-
         private init(
             title: String?,
             description: String?,
@@ -128,5 +101,35 @@ extension RSS {
                 source: source
             )
         }
+    }
+}
+
+// MARK: - Unchecked Construction
+extension RSS.Item {
+    static func makeUnchecked(
+        title: String? = nil,
+        description: String? = nil,
+        link: URI? = nil,
+        author: String? = nil,
+        categories: [RSS.Category] = [],
+        comments: URI? = nil,
+        enclosure: RSS.Enclosure? = nil,
+        guid: RSS.GUID? = nil,
+        pubDate: RFC_5322.Date? = nil,
+        source: RSS.Source? = nil
+    ) -> RSS.Item {
+        RSS.Item(
+            title: title,
+            description: description,
+            link: link,
+            author: author,
+            categories: categories,
+            comments: comments,
+            enclosure: enclosure,
+            guid: guid,
+            pubDate: pubDate,
+            source: source,
+            unchecked: ()
+        )
     }
 }
