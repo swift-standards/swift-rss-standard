@@ -55,9 +55,7 @@ let package = Package(
         ),
         .testTarget(
             name: "RSS Standard Tests",
-            dependencies: [
-                "RSS Standard",
-            ]
+            dependencies: [.rss, .rssITunes, .rssDublinCore]
         ),
     ],
     swiftLanguageModes: [.v6]
