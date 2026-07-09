@@ -8,7 +8,7 @@ import URI_Standard
 
 @Suite
 struct `Extension Tests` {
-    @Test func iTunesDurationParsing() async throws {
+    @Test func `i Tunes Duration Parsing`() async throws {
         // Test HH:MM:SS format
         let duration1 = iTunes.Duration(string: "1:30:45")
         #expect(duration1?.hours == 1)
@@ -28,7 +28,7 @@ struct `Extension Tests` {
         #expect(duration3?.totalSeconds == 90)
     }
 
-    @Test func iTunesDurationFormatting() async throws {
+    @Test func `i Tunes Duration Formatting`() async throws {
         let duration1 = iTunes.Duration(hours: 1, minutes: 30, seconds: 45)
         #expect(duration1.formatted == "1:30:45")
 
@@ -39,7 +39,7 @@ struct `Extension Tests` {
         #expect(duration3.formatted == "1:01:05")
     }
 
-    @Test func iTunesChannelExtension() async throws {
+    @Test func `i Tunes Channel Extension`() async throws {
         let ext = iTunes.ChannelExtension(
             author: "John Doe",
             owner: iTunes.Owner(name: "Jane Smith", email: "jane@example.com"),
@@ -57,7 +57,7 @@ struct `Extension Tests` {
         #expect(ext.type == .episodic)
     }
 
-    @Test func iTunesItemExtension() async throws {
+    @Test func `i Tunes Item Extension`() async throws {
         let duration = iTunes.Duration(hours: 0, minutes: 45, seconds: 30)
         let ext = iTunes.ItemExtension(
             duration: duration,
@@ -72,7 +72,7 @@ struct `Extension Tests` {
         #expect(ext.episode == 5)
     }
 
-    @Test func dublinCoreMetadata() async throws {
+    @Test func `dublin Core Metadata`() async throws {
         let metadata = DublinCore.Metadata(
             creator: ["Alice", "Bob"],
             subject: ["Swift", "Programming"],
@@ -86,7 +86,7 @@ struct `Extension Tests` {
         #expect(metadata.publisher == "Example Press")
     }
 
-    @Test func durationExpressibleByIntegerLiteral() async throws {
+    @Test func `duration Expressible By Integer Literal`() async throws {
         let duration: iTunes.Duration = 3665
         #expect(duration.hours == 1)
         #expect(duration.minutes == 1)
@@ -96,7 +96,7 @@ struct `Extension Tests` {
     }
 
     @available(macOS 13, iOS 16, tvOS 16, watchOS 9, *)
-    @Test func durationSwiftDurationConversion() async throws {
+    @Test func `duration Swift Duration Conversion`() async throws {
         // Test creating iTunes.Duration from Swift.Duration
         let swiftDuration: Swift.Duration = .seconds(3665)
         let itunesDuration = iTunes.Duration(swiftDuration)
@@ -111,7 +111,7 @@ struct `Extension Tests` {
         #expect(converted == .seconds(5445))
     }
 
-    @Test func durationCustomStringConvertible() async throws {
+    @Test func `duration Custom String Convertible`() async throws {
         let duration1 = iTunes.Duration(hours: 1, minutes: 30, seconds: 45)
         #expect(String(describing: duration1) == "1:30:45")
 
@@ -119,7 +119,7 @@ struct `Extension Tests` {
         #expect(String(describing: duration2) == "5:30")
     }
 
-    @Test func categoryExpressibleByStringLiteral() async throws {
+    @Test func `category Expressible By String Literal`() async throws {
         let category: RSS.Category = "Technology"
         #expect(category.value == "Technology")
         #expect(category.domain == nil)
@@ -131,7 +131,7 @@ struct `Extension Tests` {
         #expect(categories[1].value == "Sports")
     }
 
-    @Test func guidExpressibleByStringLiteral() async throws {
+    @Test func `guid Expressible By String Literal`() async throws {
         let guid: RSS.GUID = "https://example.com/post/123"
         #expect(guid.value == "https://example.com/post/123")
         #expect(guid.isPermaLink == true)
