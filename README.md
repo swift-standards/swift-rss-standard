@@ -1,7 +1,7 @@
 # swift-rss-standard
 
-[![CI](https://github.com/swift-standards/swift-rss-standard/workflows/CI/badge.svg)](https://github.com/swift-standards/swift-rss-standard/actions/workflows/ci.yml)
 ![Development Status](https://img.shields.io/badge/status-active--development-blue.svg)
+[![CI](https://github.com/swift-standards/swift-rss-standard/workflows/CI/badge.svg)](https://github.com/swift-standards/swift-rss-standard/actions/workflows/ci.yml)
 
 Type-safe RSS 2.0 feed type definitions for Swift with support for iTunes podcast extensions and Dublin Core metadata.
 
