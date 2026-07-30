@@ -37,9 +37,13 @@ extension RSS.Parse.Duration {
         }
     }
 
-    public enum Error: Swift.Error, Sendable, Equatable {
-        case expectedDigit
-    }
+    /// Errors that can occur when parsing an iTunes-style duration.
+    ///
+    /// Aliases the module-scope, non-generic `__ParseDurationError` — hoisted out of this
+    /// generic namespace so the `@error` SIL result carries no phantom `Input` type parameter
+    /// (the structural fix for the `FunctionSignatureOpts` release-build ICE,
+    /// `SILArgument.cpp:40 !type.hasTypeParameter()`).
+    public typealias Error = __ParseDurationError
 }
 
 extension RSS.Parse.Duration: Parser.`Protocol` {
