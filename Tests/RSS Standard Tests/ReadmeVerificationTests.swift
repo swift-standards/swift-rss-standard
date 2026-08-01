@@ -7,6 +7,9 @@ import URI_Standard
 
 @Suite
 struct `README Verification` {
+    @Suite struct Unit {}
+    @Suite struct `Edge Case` {}
+    @Suite struct Integration {}
     @Test
     func `Quick Start - Basic RSS feed model creation`() throws {
         // Create a basic RSS feed

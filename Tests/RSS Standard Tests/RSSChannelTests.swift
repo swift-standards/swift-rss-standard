@@ -6,6 +6,9 @@ import URI_Standard
 
 @Suite
 struct `RSS Channel Tests` {
+    @Suite struct Unit {}
+    @Suite struct `Edge Case` {}
+    @Suite struct Integration {}
     @Test
     func `Channel creation with required fields`() async throws {
         let channel = RSS.Channel(

@@ -26,7 +26,7 @@ extension iTunes {
             let bytes = Array(string.utf8)
             var components: [String] = []
             var start = 0
-            for idx in 0..<bytes.count {
+            bytes.indices.forEach { idx in
                 if bytes[idx] == 0x3A {  // ':'
                     components.append(String(decoding: bytes[start..<idx], as: UTF8.self))
                     start = idx &+ 1

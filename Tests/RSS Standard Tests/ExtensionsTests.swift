@@ -8,6 +8,9 @@ import URI_Standard
 
 @Suite
 struct `Extension Tests` {
+    @Suite struct Unit {}
+    @Suite struct `Edge Case` {}
+    @Suite struct Integration {}
     @Test func `i Tunes Duration Parsing`() async throws {
         // Test HH:MM:SS format
         let duration1 = iTunes.Duration(string: "1:30:45")

@@ -5,6 +5,9 @@ import URI_Standard
 
 @Suite
 struct `URI.Representable Integration Tests` {
+    @Suite struct Unit {}
+    @Suite struct `Edge Case` {}
+    @Suite struct Integration {}
 
     @Test
     func `Channel with URI works`() throws {

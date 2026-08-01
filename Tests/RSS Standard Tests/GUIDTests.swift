@@ -6,6 +6,9 @@ import URI_Standard
 
 @Suite
 struct `GUID Validation` {
+    @Suite struct Unit {}
+    @Suite struct `Edge Case` {}
+    @Suite struct Integration {}
 
     @Test
     func `GUID from URI is a permalink`() throws {
@@ -50,24 +53,25 @@ struct `GUID Validation` {
 
     @Test
     func `GUID validation error message`() {
-        do {
+        do throws(RSS.Error) {
             _ = try RSS.GUID("invalid url!", isPermaLink: true)
             Issue.record("Expected Error to be thrown")
-        } catch let error as RSS.Error {
+        } catch let error {
             switch error {
             case .invalidPermalink(let value):
                 #expect(value == "invalid url!")
             default:
                 Issue.record("Expected invalidPermalink error")
             }
-        } catch {
-            Issue.record("Expected RSS.Error, got \(type(of: error))")
         }
     }
 }
 
 @Suite
 struct `GUID Codable` {
+    @Suite struct Unit {}
+    @Suite struct `Edge Case` {}
+    @Suite struct Integration {}
 
     @Test
     func `Encode GUID with permalink`() throws {

@@ -24,19 +24,6 @@ extension RSS.Parse {
 }
 
 extension RSS.Parse.Duration {
-    public struct Output: Sendable, Equatable {
-        public let hours: Int
-        public let minutes: Int
-        public let seconds: Int
-
-        @inlinable
-        public init(hours: Int, minutes: Int, seconds: Int) {
-            self.hours = hours
-            self.minutes = minutes
-            self.seconds = seconds
-        }
-    }
-
     /// Errors that can occur when parsing an iTunes-style duration.
     ///
     /// Aliases the module-scope, non-generic `__ParseDurationError` — hoisted out of this
@@ -47,7 +34,8 @@ extension RSS.Parse.Duration {
 }
 
 extension RSS.Parse.Duration: Parser.`Protocol` {
-    public typealias Failure = RSS.Parse.Duration<Input>.Error
+    public typealias Failure = __ParseDurationError
+    public typealias Body = Never
 
     @inlinable
     public func parse(_ input: inout Input) throws(Failure) -> Output {

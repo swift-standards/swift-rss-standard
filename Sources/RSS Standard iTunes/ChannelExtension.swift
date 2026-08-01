@@ -55,32 +55,3 @@ extension iTunes {
     }
 }
 
-extension iTunes {
-    /// Podcast type
-    public enum PodcastType: String, Hashable, Sendable, Codable {
-        case episodic
-        case serial
-    }
-
-    /// Podcast owner information
-    public struct Owner: Hashable, Sendable, Codable {
-        public let name: String
-        public let email: String
-
-        public init(name: String, email: String) {
-            self.name = name
-            self.email = email
-        }
-    }
-
-    /// iTunes category
-    public struct Category: Hashable, Sendable, Codable {
-        public let text: String
-        public let subcategory: String?
-
-        public init(text: String, subcategory: String? = nil) {
-            self.text = text
-            self.subcategory = subcategory
-        }
-    }
-}
