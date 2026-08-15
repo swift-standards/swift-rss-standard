@@ -14,12 +14,16 @@ extension RSS.Error {
         switch self {
         case .itemRequiresTitleOrDescription:
             return "RSS item requires at least one of title or description"
+
         case .imageWidthExceedsMaximum(let width):
             return "RSS image width \(width) exceeds maximum of 144 pixels"
+
         case .imageHeightExceedsMaximum(let height):
             return "RSS image height \(height) exceeds maximum of 400 pixels"
+
         case .invalidXML(let description):
             return "Invalid RSS XML: \(description)"
+
         case .invalidPermalink(let value):
             return "GUID permalink value '\(value)' is not a valid URI"
         }

@@ -18,10 +18,10 @@ extension RSS {
             height: Int? = nil,
             description: String? = nil
         ) throws(Error) {
-            if let width = width, width > 144 {
+            if let width, width > 144 {
                 throw .imageWidthExceedsMaximum(width)
             }
-            if let height = height, height > 400 {
+            if let height, height > 400 {
                 throw .imageHeightExceedsMaximum(height)
             }
 
@@ -37,10 +37,10 @@ extension RSS {
         ///
         /// Accepts any URI.Representable type (e.g., URI) for url and link.
         @_disfavoredOverload
-        public init(
-            url: any URI.Representable,
+        public init<U: URI.Representable, L: URI.Representable>(
+            url: U,
             title: String,
-            link: any URI.Representable,
+            link: L,
             width: Int? = nil,
             height: Int? = nil,
             description: String? = nil

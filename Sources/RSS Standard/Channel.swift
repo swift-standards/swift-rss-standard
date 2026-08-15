@@ -78,9 +78,9 @@ extension RSS {
         ///
         /// Accepts any URI.Representable type (e.g., URI) for link and docs.
         @_disfavoredOverload
-        public init(
+        public init<L: URI.Representable>(
             title: String,
-            link: any URI.Representable,
+            link: L,
             description: String,
             language: String? = nil,
             copyright: String? = nil,
@@ -90,6 +90,8 @@ extension RSS {
             lastBuildDate: RFC_5322.Date? = nil,
             categories: [Category] = [],
             generator: String? = nil,
+            // WHY: optional convenience parameter defaulting to nil — a generic constraint can't be inferred when the caller omits it, so the existential is the deliberate choice here.
+            // swiftlint:disable:next no_any_protocol_existential
             docs: (any URI.Representable)? = nil,
             cloud: Cloud? = nil,
             ttl: Int? = nil,
