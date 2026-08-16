@@ -15,9 +15,13 @@ extension RSS {
         public init(_ value: String, isPermaLink: Bool = true) throws(Error) {
             // Validate that permalinks are valid URIs with a scheme
             if isPermaLink {
-                // swift-linter:disable:next try optional
-                // REASON: `URI.init(_:)`'s error type is a re-exported cross-package typealias; this site only needs the success/failure signal, not the error payload.
-                guard let uri = try? URI(value), uri.scheme != nil else {
+                let uri: URI?
+                do throws(URIError) {
+                    uri = try URI(value)
+                } catch {
+                    uri = nil
+                }
+                guard let uri, uri.scheme != nil else {
                     throw Error.invalidPermalink(value)
                 }
             }

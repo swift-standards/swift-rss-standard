@@ -19,7 +19,8 @@ extension RSS {
         ///
         /// Accepts any URI.Representable type (e.g., URI) for link.
         @_disfavoredOverload
-        public init(title: String, description: String, name: String, link: any URI.Representable) {
+        public init<T: URI.Representable>(title: String, description: String, name: String, link: T)
+        {
             self.init(title: title, description: description, name: name, link: link.uri)
         }
     }

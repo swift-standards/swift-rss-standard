@@ -60,6 +60,7 @@ struct `GUID Validation` {
             switch error {
             case .invalidPermalink(let value):
                 #expect(value == "invalid url!")
+
             default:
                 Issue.record("Expected invalidPermalink error")
             }

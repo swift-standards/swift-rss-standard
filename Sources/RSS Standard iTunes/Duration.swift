@@ -78,7 +78,7 @@ extension iTunes.Duration {
     }
 
     public var formatted: String {
-        if let hours = hours {
+        if let hours {
             let mm = minutes.formatted(.decimal.zeroPadded(width: 2))
             let ss = seconds.formatted(.decimal.zeroPadded(width: 2))
             return "\(hours):\(mm):\(ss)"

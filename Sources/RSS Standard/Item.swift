@@ -79,9 +79,13 @@ extension RSS {
         public init(
             title: String? = nil,
             description: String? = nil,
+            // WHY: optional convenience parameter defaulting to nil — a generic constraint can't be inferred when the caller omits it, so the existential is the deliberate choice here.
+            // swiftlint:disable:next no_any_protocol_existential
             link: (any URI.Representable)? = nil,
             author: String? = nil,
             categories: [Category] = [],
+            // WHY: optional convenience parameter defaulting to nil — a generic constraint can't be inferred when the caller omits it, so the existential is the deliberate choice here.
+            // swiftlint:disable:next no_any_protocol_existential
             comments: (any URI.Representable)? = nil,
             enclosure: Enclosure? = nil,
             guid: GUID? = nil,
