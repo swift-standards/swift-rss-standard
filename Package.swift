@@ -1,4 +1,4 @@
-// swift-tools-version: 6.3.3
+// swift-tools-version: 6.4
 
 import PackageDescription
 
@@ -14,36 +14,57 @@ extension Target.Dependency {
     static var rssDublinCore: Self { .target(name: .rssDublinCore) }
     static var uriStandard: Self { .product(name: "URI Standard", package: "swift-uri-standard") }
     static var rfc5322: Self { .product(name: "RFC 5322", package: "swift-rfc-5322") }
-    static var standards: Self { .product(name: "Standard Library Extensions", package: "swift-standard-library-extensions") }
-    static var binary: Self { .product(name: "Binary Primitives", package: "swift-binary-primitives") }
-    static var radixFormatter: Self { .product(name: "Radix Formatter Primitives", package: "swift-radix-formatter-primitives") }
+    static var standards: Self {
+        .product(name: "Standard Library Extensions", package: "swift-standard-library-extensions")
+    }
+    static var binary: Self {
+        .product(name: "Binary Primitives", package: "swift-binary-primitives")
+    }
+    static var radixFormatter: Self {
+        .product(name: "Radix Formatter Primitives", package: "swift-radix-formatter-primitives")
+    }
 }
 
 let package = Package(
     name: "swift-rss-standard",
     platforms: [
-        .macOS("27"),
-        .iOS("27"),
-        .tvOS("27"),
-        .watchOS("27")
+        .macOS(.v27),
+        .iOS(.v27),
+        .tvOS(.v27),
+        .watchOS(.v27),
     ],
     products: [
         .library(name: "RSS Standard", targets: ["RSS Standard"]),
         .library(name: "RSS Standard iTunes", targets: ["RSS Standard iTunes"]),
-        .library(name: "RSS Standard Dublin Core", targets: ["RSS Standard Dublin Core"])
+        .library(name: "RSS Standard Dublin Core", targets: ["RSS Standard Dublin Core"]),
     ],
     dependencies: [
         .package(url: "https://github.com/swift-standards/swift-uri-standard.git", branch: "main"),
         .package(url: "https://github.com/swift-ietf/swift-rfc-5322.git", branch: "main"),
-        .package(url: "https://github.com/swift-primitives/swift-standard-library-extensions.git", branch: "main"),
-        .package(url: "https://github.com/swift-primitives/swift-binary-primitives.git", branch: "main"),
-        .package(url: "https://github.com/swift-primitives/swift-parser-primitives.git", branch: "main"),
-        .package(url: "https://github.com/swift-primitives/swift-radix-formatter-primitives.git", branch: "main")
+        .package(
+            url: "https://github.com/swift-primitives/swift-standard-library-extensions.git",
+            branch: "main"
+        ),
+        .package(
+            url: "https://github.com/swift-primitives/swift-binary-primitives.git",
+            branch: "main"
+        ),
+        .package(
+            url: "https://github.com/swift-primitives/swift-parser-primitives.git",
+            branch: "main"
+        ),
+        .package(
+            url: "https://github.com/swift-primitives/swift-radix-formatter-primitives.git",
+            branch: "main"
+        ),
     ],
     targets: [
         .target(
             name: "RSS Standard",
-            dependencies: [.uriStandard, .rfc5322, .product(name: "Parser Primitives", package: "swift-parser-primitives")]
+            dependencies: [
+                .uriStandard, .rfc5322,
+                .product(name: "Parser Primitives", package: "swift-parser-primitives"),
+            ]
         ),
         .target(
             name: "RSS Standard iTunes",
