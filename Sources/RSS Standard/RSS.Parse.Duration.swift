@@ -1,21 +1,7 @@
-//
-//  RSS.Parse.Duration.swift
-//  swift-rss-standard
-//
-//  iTunes-style duration: HH:MM:SS or MM:SS or SS
-//
-
 public import Parser_Primitives
 
 extension RSS.Parse {
-    /// Parses an iTunes-style duration.
-    ///
-    /// Formats:
-    /// - `HH:MM:SS` — hours, minutes, seconds
-    /// - `MM:SS` — minutes, seconds
-    /// - `SS` — seconds only
-    ///
-    /// Returns the components as integers.
+
     public struct Duration<Input: Collection.Slice.`Protocol`>: Sendable
     where Input: Sendable, Input.Element == UInt8 {
         @inlinable
@@ -24,12 +10,7 @@ extension RSS.Parse {
 }
 
 extension RSS.Parse.Duration {
-    /// Errors that can occur when parsing an iTunes-style duration.
-    ///
-    /// Aliases the module-scope, non-generic `__ParseDurationError` — hoisted out of this
-    /// generic namespace so the `@error` SIL result carries no phantom `Input` type parameter
-    /// (the structural fix for the `FunctionSignatureOpts` release-build ICE,
-    /// `SILArgument.cpp:40 !type.hasTypeParameter()`).
+
     public typealias Error = __ParseDurationError
 }
 
@@ -39,7 +20,7 @@ extension RSS.Parse.Duration: Parser.`Protocol` {
 
     @inlinable
     public func parse(_ input: inout Input) throws(Failure) -> Output {
-        // Parse colon-separated numbers
+
         var components: [Int] = []
 
         while true {
@@ -58,7 +39,6 @@ extension RSS.Parse.Duration: Parser.`Protocol` {
                 components.append(value)
             }
 
-            // Check for ':'
             if input.startIndex < input.endIndex && input[input.startIndex] == 0x3A {
                 input = input[input.index(after: input.startIndex)...]
             } else {
@@ -68,7 +48,6 @@ extension RSS.Parse.Duration: Parser.`Protocol` {
 
         guard !components.isEmpty else { throw .expectedDigit }
 
-        // Map components to hours/minutes/seconds based on count
         return switch components.count {
         case 1: Output(hours: 0, minutes: 0, seconds: components[0])
         case 2: Output(hours: 0, minutes: components[0], seconds: components[1])

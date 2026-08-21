@@ -1,5 +1,5 @@
 extension RSS {
-    /// Represents a cloud protocol for RSS publish-subscribe
+
     public struct CloudProtocol: Hashable, Sendable {
         public let rawValue: String
 
@@ -9,25 +9,21 @@ extension RSS {
     }
 }
 
-// MARK: - Standard Protocols
 extension RSS.CloudProtocol {
-    // Standard protocols from RSS 2.0 specification
+
     public static let xmlRpc = RSS.CloudProtocol(rawValue: "xml-rpc")
     public static let soap11 = RSS.CloudProtocol(rawValue: "soap 1.1")
     public static let httpPost = RSS.CloudProtocol(rawValue: "http-post")
 }
 
-// MARK: - RawRepresentable
 extension RSS.CloudProtocol: RawRepresentable {}
 
-// MARK: - ExpressibleByStringLiteral
 extension RSS.CloudProtocol: ExpressibleByStringLiteral {
     public init(stringLiteral value: String) {
         self.init(rawValue: value)
     }
 }
 
-// MARK: - Codable
 extension RSS.CloudProtocol: Codable {
     public func encode(to encoder: any Encoder) throws {
         var container = encoder.singleValueContainer()
@@ -41,7 +37,6 @@ extension RSS.CloudProtocol: Codable {
     }
 }
 
-// MARK: - CustomStringConvertible
 extension RSS.CloudProtocol: CustomStringConvertible {
     public var description: String { rawValue }
 }

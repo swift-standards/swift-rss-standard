@@ -12,21 +12,19 @@ struct `Extension Tests` {
     @Suite struct `Edge Case` {}
     @Suite struct Integration {}
     @Test func `i Tunes Duration Parsing`() async throws {
-        // Test HH:MM:SS format
+
         let duration1 = iTunes.Duration(string: "1:30:45")
         #expect(duration1?.hours == 1)
         #expect(duration1?.minutes == 30)
         #expect(duration1?.seconds == 45)
         #expect(duration1?.totalSeconds == 5445)
 
-        // Test MM:SS format
         let duration2 = iTunes.Duration(string: "45:30")
         #expect(duration2?.hours == nil)
         #expect(duration2?.minutes == 45)
         #expect(duration2?.seconds == 30)
         #expect(duration2?.totalSeconds == 2730)
 
-        // Test SS format
         let duration3 = iTunes.Duration(string: "90")
         #expect(duration3?.totalSeconds == 90)
     }
@@ -100,7 +98,7 @@ struct `Extension Tests` {
 
     @available(macOS 13, iOS 16, tvOS 16, watchOS 9, *)
     @Test func `duration Swift Duration Conversion`() async throws {
-        // Test creating iTunes.Duration from Swift.Duration
+
         let swiftDuration: Swift.Duration = .seconds(3665)
         let itunesDuration = iTunes.Duration(swiftDuration)
         #expect(itunesDuration.hours == 1)
@@ -108,7 +106,6 @@ struct `Extension Tests` {
         #expect(itunesDuration.seconds == 5)
         #expect(itunesDuration.totalSeconds == 3665)
 
-        // Test converting iTunes.Duration to Swift.Duration
         let duration = iTunes.Duration(hours: 1, minutes: 30, seconds: 45)
         let converted = duration.swiftDuration
         #expect(converted == .seconds(5445))
@@ -127,7 +124,6 @@ struct `Extension Tests` {
         #expect(category.value == "Technology")
         #expect(category.domain == nil)
 
-        // Test in array context
         let categories: [RSS.Category] = ["News", "Sports", "Politics"]
         #expect(categories.count == 3)
         #expect(categories[0].value == "News")
@@ -139,7 +135,6 @@ struct `Extension Tests` {
         #expect(guid.value == "https://example.com/post/123")
         #expect(guid.isPermaLink == true)
 
-        // Test in array context
         let guids: [RSS.GUID] = ["https://example.com/1", "https://example.com/2"]
         #expect(guids.count == 2)
         #expect(guids[0].isPermaLink == true)

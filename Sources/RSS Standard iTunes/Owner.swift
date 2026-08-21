@@ -1,5 +1,5 @@
 extension iTunes {
-    /// Podcast owner information
+
     public struct Owner: Hashable, Sendable, Codable {
         public let name: String
         public let email: String

@@ -94,22 +94,19 @@ struct `RSS Channel Tests` {
 
     @Test
     func `Item validation - requires title or description`() async throws {
-        // Should succeed with title
+
         let item1 = try RSS.Item(title: "Test")
         #expect(item1.title == "Test")
         #expect(item1.description == nil)
 
-        // Should succeed with description
         let item2 = try RSS.Item(description: "Test description")
         #expect(item2.title == nil)
         #expect(item2.description == "Test description")
 
-        // Should succeed with both
         let item3 = try RSS.Item(title: "Title", description: "Description")
         #expect(item3.title == "Title")
         #expect(item3.description == "Description")
 
-        // Should fail with neither
         #expect(throws: RSS.Error.itemRequiresTitleOrDescription) {
             try RSS.Item()
         }
@@ -117,7 +114,7 @@ struct `RSS Channel Tests` {
 
     @Test
     func `Image validation - width and height limits`() async throws {
-        // Valid image
+
         let validImage = try RSS.Image(
             url: try URI("https://example.com/logo.png"),
             title: "Logo",
@@ -128,7 +125,6 @@ struct `RSS Channel Tests` {
         #expect(validImage.width == 88)
         #expect(validImage.height == 31)
 
-        // Width exceeds maximum
         #expect(throws: RSS.Error.imageWidthExceedsMaximum(145)) {
             try RSS.Image(
                 url: try URI("https://example.com/logo.png"),
@@ -138,7 +134,6 @@ struct `RSS Channel Tests` {
             )
         }
 
-        // Height exceeds maximum
         #expect(throws: RSS.Error.imageHeightExceedsMaximum(401)) {
             try RSS.Image(
                 url: try URI("https://example.com/logo.png"),

@@ -1,5 +1,5 @@
 extension RSS {
-    /// RSS 2.0 Cloud (publish-subscribe)
+
     public struct Cloud: Hashable, Sendable, Codable {
         public let domain: String
         public let port: Int

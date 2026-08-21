@@ -1,5 +1,5 @@
 extension iTunes {
-    /// iTunes category
+
     public struct Category: Hashable, Sendable, Codable {
         public let text: String
         public let subcategory: String?

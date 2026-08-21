@@ -2,32 +2,30 @@ public import RFC_5322
 public import URI_Standard
 
 extension RSS {
-    /// RSS 2.0 Channel (top-level feed container)
+
     public struct Channel: Hashable, Sendable, Codable {
-        // Required elements
+
         public let title: String
         public let link: URI
         public let description: String
 
-        // Optional elements
         public let language: String?
         public let copyright: String?
-        public let managingEditor: String?  // email
-        public let webMaster: String?  // email
+        public let managingEditor: String?
+        public let webMaster: String?
         public let pubDate: RFC_5322.Date?
         public let lastBuildDate: RFC_5322.Date?
         public let categories: [Category]
         public let generator: String?
         public let docs: URI?
         public let cloud: Cloud?
-        public let ttl: Int?  // minutes
+        public let ttl: Int?
         public let image: Image?
         public private(set) var rating: String?
         public let textInput: TextInput?
         public let skipHours: Set<Hour>?
         public let skipDays: [Weekday]?
 
-        // Items
         public let items: [Item]
 
         @_disfavoredOverload
@@ -74,9 +72,6 @@ extension RSS {
             self.items = items
         }
 
-        /// Convenience initializer accepting URI.Representable types
-        ///
-        /// Accepts any URI.Representable type (e.g., URI) for link and docs.
         @_disfavoredOverload
         public init<L: URI.Representable>(
             title: String,
@@ -90,8 +85,7 @@ extension RSS {
             lastBuildDate: RFC_5322.Date? = nil,
             categories: [Category] = [],
             generator: String? = nil,
-            // WHY: optional convenience parameter defaulting to nil — a generic constraint can't be inferred when the caller omits it, so the existential is the deliberate choice here.
-            // swiftlint:disable:next no_any_protocol_existential
+
             docs: (any URI.Representable)? = nil,
             cloud: Cloud? = nil,
             ttl: Int? = nil,

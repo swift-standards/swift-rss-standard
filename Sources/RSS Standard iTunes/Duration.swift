@@ -3,7 +3,7 @@ import Radix_Formatter_Primitives
 import Standard_Library_Extensions
 
 extension iTunes {
-    /// Duration in hours, minutes, and seconds for podcast episodes
+
     public struct Duration: Hashable, Sendable, Codable {
         public let hours: Int?
         public let minutes: Int
@@ -21,13 +21,12 @@ extension iTunes {
             self.seconds = totalSeconds % 60
         }
 
-        /// Parse duration from string (format: HH:MM:SS or MM:SS or SS)
         public init?(string: String) {
             let bytes = Array(string.utf8)
             var components: [String] = []
             var start = 0
             bytes.indices.forEach { idx in
-                if bytes[idx] == 0x3A {  // ':'
+                if bytes[idx] == 0x3A {
                     components.append(String(decoding: bytes[start..<idx], as: UTF8.self))
                     start = idx &+ 1
                 }
@@ -57,12 +56,6 @@ extension iTunes {
             }
         }
 
-        /// Convert from Swift.Duration to iTunes.Duration
-        ///
-        /// Example:
-        /// ```swift
-        /// let duration = iTunes.Duration(.seconds(3665))
-        /// ```
         @available(macOS 13, iOS 16, tvOS 16, watchOS 9, *)
         public init(_ duration: Swift.Duration) {
             let totalSeconds = Int(duration.components.seconds)
@@ -71,7 +64,6 @@ extension iTunes {
     }
 }
 
-// MARK: - Computed Properties
 extension iTunes.Duration {
     public var totalSeconds: Int {
         (hours ?? 0) * 3600 + minutes * 60 + seconds
@@ -88,32 +80,19 @@ extension iTunes.Duration {
         }
     }
 
-    /// Convert to Swift.Duration
-    ///
-    /// Example:
-    /// ```swift
-    /// let swiftDuration = itunesDuration.swiftDuration
-    /// ```
     @available(macOS 13, iOS 16, tvOS 16, watchOS 9, *)
     public var swiftDuration: Swift.Duration {
         .seconds(self.totalSeconds)
     }
 }
 
-// MARK: - ExpressibleByIntegerLiteral
 extension iTunes.Duration: ExpressibleByIntegerLiteral {
-    /// Creates a duration from an integer literal representing total seconds
-    ///
-    /// Example:
-    /// ```swift
-    /// let duration: iTunes.Duration = 3665  // 1:01:05
-    /// ```
+
     public init(integerLiteral value: Int) {
         self.init(totalSeconds: value)
     }
 }
 
-// MARK: - CustomStringConvertible
 extension iTunes.Duration: CustomStringConvertible {
     public var description: String {
         formatted

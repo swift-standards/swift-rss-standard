@@ -36,7 +36,7 @@ struct `GUID Validation` {
 
     @Test
     func `Non-permalink string with invalid format succeeds`() throws {
-        // When isPermaLink is false, any string is valid
+
         let guid = try RSS.GUID("my-custom-id-123", isPermaLink: false)
 
         #expect(guid.value == "my-custom-id-123")
@@ -48,7 +48,7 @@ struct `GUID Validation` {
         let guid: RSS.GUID = "tag:example.com,2025:post-123"
 
         #expect(guid.value == "tag:example.com,2025:post-123")
-        #expect(guid.isPermaLink == true)  // Default for string literals
+        #expect(guid.isPermaLink == true)
     }
 
     @Test
@@ -81,15 +81,13 @@ struct `GUID Codable` {
         let data = try encoder.encode(guid)
         let json = String(data: data, encoding: .utf8)!
 
-        // JSON may escape forward slashes as \/ which is valid
         #expect(json.contains("example.com"))
         #expect(json.contains("\"isPermaLink\":true"))
     }
 
     @Test
     func `Decode GUID uses unchecked initializer`() throws {
-        // Decoding should succeed even with invalid permalink
-        // (for compatibility with existing data)
+
         let json = """
             {"value":"not a url","isPermaLink":true}
             """

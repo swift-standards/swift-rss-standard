@@ -1,13 +1,13 @@
 public import URI_Standard
 
 extension RSS {
-    /// RSS 2.0 Image
+
     public struct Image: Hashable, Sendable, Codable {
         public let url: URI
         public let title: String
         public let link: URI
-        public let width: Int?  // max 144, default 88
-        public let height: Int?  // max 400, default 31
+        public let width: Int?
+        public let height: Int?
         public let description: String?
 
         public init(
@@ -33,9 +33,6 @@ extension RSS {
             self.description = description
         }
 
-        /// Convenience initializer accepting URI.Representable types
-        ///
-        /// Accepts any URI.Representable type (e.g., URI) for url and link.
         @_disfavoredOverload
         public init<U: URI.Representable, L: URI.Representable>(
             url: U,
@@ -57,7 +54,6 @@ extension RSS {
     }
 }
 
-// MARK: - Unchecked Construction
 extension RSS.Image {
     static func makeUnchecked(
         url: URI,
@@ -67,11 +63,7 @@ extension RSS.Image {
         height: Int? = nil,
         description: String? = nil
     ) -> RSS.Image {
-        // force_try: private construction helper, currently unreferenced
-        // within this module; per the force_try trap-table disposition this
-        // is shielded rather than rewritten (no external callers to verify
-        // width/height are always in-range at every call site).
-        // swiftlint:disable:next force_try
+
         try! RSS.Image(
             url: url.uri,
             title: title,

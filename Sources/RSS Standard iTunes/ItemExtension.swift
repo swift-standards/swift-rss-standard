@@ -2,36 +2,27 @@ import RSS_Standard
 public import URI_Standard
 
 extension iTunes {
-    /// iTunes podcast item (episode) extensions
+
     public struct ItemExtension: Hashable, Sendable, Codable {
-        /// The episode author
+
         public let author: String?
 
-        /// The duration of the episode
         public let duration: Duration?
 
-        /// Whether the episode contains explicit content
         public let explicit: Bool?
 
-        /// The episode type
         public let episodeType: EpisodeType?
 
-        /// The season number
         public let season: Int?
 
-        /// The episode number
         public let episode: Int?
 
-        /// Episode title (can differ from RSS item title)
         public let title: String?
 
-        /// Episode subtitle
         public let subtitle: String?
 
-        /// Episode summary
         public let summary: String?
 
-        /// URI to episode-specific artwork
         public let image: URI?
 
         public init(

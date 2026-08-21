@@ -2,15 +2,14 @@ public import RFC_5322
 public import URI_Standard
 
 extension RSS {
-    /// RSS 2.0 Item (individual entry)
+
     public struct Item: Hashable, Sendable, Codable {
-        // At least one of title or description required (validation in init)
+
         public let title: String?
         public let description: String?
 
-        // Optional elements
         public let link: URI?
-        public let author: String?  // email
+        public let author: String?
         public let categories: [Category]
         public let comments: URI?
         public let enclosure: Enclosure?
@@ -30,7 +29,7 @@ extension RSS {
             pubDate: RFC_5322.Date? = nil,
             source: Source? = nil
         ) throws(Error) {
-            // Validation: at least one of title or description required
+
             guard title != nil || description != nil else {
                 throw .itemRequiresTitleOrDescription
             }
@@ -72,20 +71,15 @@ extension RSS {
             self.source = source
         }
 
-        /// Convenience initializer accepting URI.Representable types
-        ///
-        /// Accepts any URI.Representable type (e.g., URI) for link and comments.
         @_disfavoredOverload
         public init(
             title: String? = nil,
             description: String? = nil,
-            // WHY: optional convenience parameter defaulting to nil — a generic constraint can't be inferred when the caller omits it, so the existential is the deliberate choice here.
-            // swiftlint:disable:next no_any_protocol_existential
+
             link: (any URI.Representable)? = nil,
             author: String? = nil,
             categories: [Category] = [],
-            // WHY: optional convenience parameter defaulting to nil — a generic constraint can't be inferred when the caller omits it, so the existential is the deliberate choice here.
-            // swiftlint:disable:next no_any_protocol_existential
+
             comments: (any URI.Representable)? = nil,
             enclosure: Enclosure? = nil,
             guid: GUID? = nil,
@@ -108,7 +102,6 @@ extension RSS {
     }
 }
 
-// MARK: - Unchecked Construction
 extension RSS.Item {
     static func makeUnchecked(
         title: String? = nil,

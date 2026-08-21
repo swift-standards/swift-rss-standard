@@ -1,7 +1,7 @@
 public import URI_Standard
 
 extension RSS {
-    /// RSS 2.0 TextInput
+
     public struct TextInput: Hashable, Sendable, Codable {
         public let title: String
         public let description: String
@@ -15,9 +15,6 @@ extension RSS {
             self.link = link
         }
 
-        /// Convenience initializer accepting URI.Representable type
-        ///
-        /// Accepts any URI.Representable type (e.g., URI) for link.
         @_disfavoredOverload
         public init<T: URI.Representable>(title: String, description: String, name: String, link: T)
         {

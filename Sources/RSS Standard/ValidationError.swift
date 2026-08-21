@@ -8,7 +8,6 @@ extension RSS {
     }
 }
 
-// MARK: - Error Description
 extension RSS.Error {
     public var errorDescription: String? {
         switch self {

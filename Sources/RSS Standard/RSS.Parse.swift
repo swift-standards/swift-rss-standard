@@ -1,10 +1,3 @@
-//
-//  RSS.Parse.swift
-//  swift-rss-standard
-//
-//  Parser combinator namespace for RSS Standard.
-//
-
 import Parser_Primitives
 
 extension RSS {

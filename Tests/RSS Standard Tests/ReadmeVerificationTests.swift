@@ -12,7 +12,7 @@ struct `README Verification` {
     @Suite struct Integration {}
     @Test
     func `Quick Start - Basic RSS feed model creation`() throws {
-        // Create a basic RSS feed
+
         let channel = RSS.Channel(
             title: "My Blog",
             link: try URI("https://example.com"),
@@ -28,7 +28,6 @@ struct `README Verification` {
             ]
         )
 
-        // Verify the model
         #expect(channel.title == "My Blog")
         #expect(channel.link.value == "https://example.com")
         #expect(channel.language == "en-US")
