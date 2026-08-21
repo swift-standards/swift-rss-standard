@@ -5,7 +5,7 @@
 //  Parser combinator namespace for RSS Standard.
 //
 
-public import Parser_Primitives
+import Parser_Primitives
 
 extension RSS {
     public enum Parse {}
