@@ -1,5 +1,5 @@
-import Binary_Primitives
-import Radix_Formatter_Primitives
+import Binary
+import Radix_Formatter
 import Standard_Library_Extensions
 
 extension iTunes {

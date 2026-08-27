@@ -1,4 +1,4 @@
-import Parser_Primitives
+import Parser
 
 extension RSS {
     public enum Parse {}

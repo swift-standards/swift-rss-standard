@@ -9,8 +9,6 @@ Type-safe RSS 2.0 feed type definitions for Swift with support for iTunes podcas
 
 swift-rss-standard provides complete RSS 2.0 specification support with type-safe Swift types for representing RSS feed data structures. Includes dedicated support for podcast feeds via iTunes extensions and metadata enrichment through Dublin Core.
 
-For RSS feed generation and parsing, see [swift-rss](https://github.com/swift-foundations/swift-rss).
-
 ## Features
 
 - **Complete RSS 2.0 Support**: All required and optional channel and item elements per RSS 2.0 specification
@@ -64,8 +62,6 @@ let channel = RSS.Channel(
     ]
 )
 
-// Use the model with swift-rss for XML generation/parsing
-// See: https://github.com/swift-foundations/swift-rss
 ```
 
 ## Usage Examples
@@ -90,14 +86,11 @@ let channel = RSS.Channel(
     ]
 )
 
-// Use with swift-rss for XML generation
 ```
 
 ## Related Packages
 
-- [swift-rss](https://github.com/swift-foundations/swift-rss): RSS feed generation and parsing using these types
 - [swift-rfc-4287](https://github.com/swift-ietf/swift-rfc-4287): Type-safe Atom feed generation and parsing for Swift (RFC 4287 implementation)
-- [swift-json-feed](https://github.com/swift-foundations/swift-json-feed): Type-safe JSON Feed generation and parsing for Swift
 - [swift-syndication](https://github.com/coenttb/swift-syndication): Unified syndication API supporting RSS, Atom, and JSON Feed with format conversion
 - [swift-rfc-2822](https://github.com/swift-ietf/swift-rfc-2822): RFC 2822 date formatting for email and RSS dates
 

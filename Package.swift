@@ -18,10 +18,10 @@ extension Target.Dependency {
         .product(name: "Standard Library Extensions", package: "swift-standard-library-extensions")
     }
     static var binary: Self {
-        .product(name: "Binary Primitives", package: "swift-binary-primitives")
+        .product(name: "Binary", package: "swift-binary")
     }
     static var radixFormatter: Self {
-        .product(name: "Radix Formatter Primitives", package: "swift-radix-formatter-primitives")
+        .product(name: "Radix Formatter", package: "swift-radix-formatter")
     }
 }
 
@@ -42,19 +42,19 @@ let package = Package(
         .package(url: "https://github.com/swift-standards/swift-uri-standard.git", branch: "main"),
         .package(url: "https://github.com/swift-ietf/swift-rfc-5322.git", branch: "main"),
         .package(
-            url: "https://github.com/swift-primitives/swift-standard-library-extensions.git",
+            url: "https://github.com/swift-molecules/swift-standard-library-extensions.git",
             branch: "main"
         ),
         .package(
-            url: "https://github.com/swift-primitives/swift-binary-primitives.git",
+            url: "https://github.com/swift-molecules/swift-binary.git",
             branch: "main"
         ),
         .package(
-            url: "https://github.com/swift-primitives/swift-parser-primitives.git",
+            url: "https://github.com/swift-molecules/swift-parser.git",
             branch: "main"
         ),
         .package(
-            url: "https://github.com/swift-primitives/swift-radix-formatter-primitives.git",
+            url: "https://github.com/swift-molecules/swift-radix-formatter.git",
             branch: "main"
         ),
     ],
@@ -63,7 +63,7 @@ let package = Package(
             name: "RSS Standard",
             dependencies: [
                 .uriStandard, .rfc5322,
-                .product(name: "Parser Primitives", package: "swift-parser-primitives"),
+                .product(name: "Parser", package: "swift-parser"),
             ]
         ),
         .target(
