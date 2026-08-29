@@ -42,7 +42,7 @@ let package = Package(
         .package(url: "https://github.com/swift-standards/swift-uri-standard.git", branch: "main"),
         .package(url: "https://github.com/swift-ietf/swift-rfc-5322.git", branch: "main"),
         .package(
-            url: "https://github.com/swift-molecules/swift-standard-library-extensions.git",
+            url: "https://github.com/swift-atoms/swift-standard-library-extensions.git",
             branch: "main"
         ),
         .package(
