@@ -2,29 +2,6 @@
 
 import PackageDescription
 
-extension String {
-    static let rss: Self = "RSS Standard"
-    static let rssITunes: Self = "RSS Standard iTunes"
-    static let rssDublinCore: Self = "RSS Standard Dublin Core"
-}
-
-extension Target.Dependency {
-    static var rss: Self { .target(name: .rss) }
-    static var rssITunes: Self { .target(name: .rssITunes) }
-    static var rssDublinCore: Self { .target(name: .rssDublinCore) }
-    static var uriStandard: Self { .product(name: "URI Standard", package: "swift-uri-standard") }
-    static var rfc5322: Self { .product(name: "RFC 5322", package: "swift-rfc-5322") }
-    static var standards: Self {
-        .product(name: "Standard Library Extensions", package: "swift-standard-library-extensions")
-    }
-    static var binary: Self {
-        .product(name: "Binary", package: "swift-binary")
-    }
-    static var radixFormatter: Self {
-        .product(name: "Radix Formatter", package: "swift-radix-formatter")
-    }
-}
-
 let package = Package(
     name: "swift-rss-standard",
     platforms: [
@@ -62,30 +39,25 @@ let package = Package(
         .target(
             name: "RSS Standard",
             dependencies: [
-                .uriStandard, .rfc5322,
+                .product(name: "URI Standard", package: "swift-uri-standard"), .product(name: "RFC 5322", package: "swift-rfc-5322"),
                 .product(name: "Parser", package: "swift-parser"),
             ]
         ),
         .target(
             name: "RSS Standard iTunes",
-            dependencies: [.rss, .standards, .binary, .radixFormatter]
+            dependencies: [.target(name: "RSS Standard"), .product(name: "Standard Library Extensions", package: "swift-standard-library-extensions"), .product(name: "Binary", package: "swift-binary"), .product(name: "Radix Formatter", package: "swift-radix-formatter")]
         ),
         .target(
             name: "RSS Standard Dublin Core",
-            dependencies: [.rss]
+            dependencies: [.target(name: "RSS Standard")]
         ),
         .testTarget(
             name: "RSS Standard Tests",
-            dependencies: [.rss, .rssITunes, .rssDublinCore]
+            dependencies: [.target(name: "RSS Standard"), .target(name: "RSS Standard iTunes"), .target(name: "RSS Standard Dublin Core")]
         ),
     ],
     swiftLanguageModes: [.v6]
 )
-
-extension String {
-    var tests: Self { self + " Tests" }
-    var foundation: Self { self + " Foundation" }
-}
 
 for target in package.targets where ![.system, .binary, .plugin, .macro].contains(target.type) {
     let ecosystem: [SwiftSetting] = [
