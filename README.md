@@ -14,7 +14,8 @@ swift-rss-standard provides complete RSS 2.0 specification support with type-saf
 - **Complete RSS 2.0 Support**: All required and optional channel and item elements per RSS 2.0 specification
 - **iTunes Podcast Extensions**: Full support for podcast-specific metadata (duration, episode type, season/episode numbers)
 - **Dublin Core Metadata**: Rich metadata support for creators, subjects, publishers
-- **Type Safety**: Compile-time validation with Hashable, Sendable, Codable conformance
+- **Type Safety**: Compile-time validation with Hashable and Sendable conformance
+- **Foundation Bridging**: Optional `RSS Standard Foundation Integration` product adds Codable
 - **Validation**: Failable initializers enforce RSS requirements (items require title OR description)
 - **Swift 6.0 Concurrency**: Strict concurrency mode with complete Sendable conformance
 
@@ -34,9 +35,10 @@ Then add the products you need to your target dependencies:
 .target(
     name: "YourTarget",
     dependencies: [
-        .product(name: "RSS", package: "swift-rss-standard"),
-        .product(name: "RSS iTunes", package: "swift-rss-standard"),  // Optional: for podcast feeds
-        .product(name: "RSS Dublin Core", package: "swift-rss-standard")  // Optional: for metadata
+        .product(name: "RSS Standard", package: "swift-rss-standard"),
+        .product(name: "RSS Standard iTunes", package: "swift-rss-standard"),
+        .product(name: "RSS Standard Dublin Core", package: "swift-rss-standard"),
+        .product(name: "RSS Standard Foundation Integration", package: "swift-rss-standard")
     ]
 )
 ```
@@ -44,24 +46,24 @@ Then add the products you need to your target dependencies:
 ## Quick Start
 
 ```swift
+import RFC_5322
 import RSS_Standard
+import URI_Standard
 
-// Create a basic RSS feed model
 let channel = RSS.Channel(
     title: "My Blog",
-    link: URL(string: "https://example.com")!,
+    link: try URI("https://example.com"),
     description: "A blog about Swift development",
     language: "en-US",
     items: [
-        try! RSS.Item(
+        try RSS.Item(
             title: "First Post",
             description: "Hello, world!",
-            link: URL(string: "https://example.com/post1")!,
-            pubDate: Date()
+            link: try URI("https://example.com/post1"),
+            pubDate: try RFC_5322.Date(year: 2025, month: 1, day: 1)
         )
     ]
 )
-
 ```
 
 ## Usage Examples
@@ -69,24 +71,37 @@ let channel = RSS.Channel(
 ### Podcast Feed with iTunes Extensions
 
 ```swift
+import RFC_5322
 import RSS_Standard
 import RSS_Standard_iTunes
+import URI_Standard
 
 let channel = RSS.Channel(
-    title: "My Podcast",
-    link: URL(string: "https://example.com/podcast")!,
+    title: "Tech Podcast",
+    link: try URI("https://example.com/podcast"),
     description: "A podcast about technology",
+    categories: [
+        RSS.Category(domain: "https://example.com/cats", value: "Tech")
+    ],
     items: [
-        try! RSS.Item(
+        try RSS.Item(
             title: "Episode 1: Getting Started",
             description: "In this episode we discuss...",
-            link: URL(string: "https://example.com/episode1")!,
-            pubDate: Date()
+            link: try URI("https://example.com/episode1"),
+            categories: ["Technology", "Programming"],
+            enclosure: RSS.Enclosure(
+                url: try URI("https://example.com/audio.mp3"),
+                length: 123456,
+                type: "audio/mpeg"
+            ),
+            guid: try RSS.GUID("unique-id-123", isPermaLink: false),
+            pubDate: try RFC_5322.Date(year: 2025, month: 1, day: 1)
         )
     ]
 )
-
 ```
+
+Wire syntax lives in the coder sibling; this package is the RSS domain model.
 
 ## Related Packages
 

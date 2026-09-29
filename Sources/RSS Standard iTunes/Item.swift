@@ -1,9 +1,8 @@
-import RSS_Standard
 public import URI_Standard
 
 extension iTunes {
 
-    public struct ItemExtension: Hashable, Sendable, Codable {
+    public struct Item: Hashable, Sendable {
 
         public let author: String?
 

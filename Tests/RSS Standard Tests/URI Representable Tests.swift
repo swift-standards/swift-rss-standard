@@ -1,20 +1,15 @@
+import RSS_Standard
 import Testing
 import URI_Standard
 
-@testable import RSS_Standard
-
 @Suite
-struct `URI.Representable Integration Tests` {
-    @Suite struct Unit {}
-    @Suite struct `Edge Case` {}
-    @Suite struct Integration {}
+struct `URI representable links` {
 
     @Test
-    func `Channel with URI works`() throws {
-        let uri: URI = try .init("https://example.com")
+    func `a channel link takes a URI`() throws {
         let channel = RSS.Channel(
             title: "Test",
-            link: uri,
+            link: try URI("https://example.com"),
             description: "Test channel"
         )
 
@@ -22,21 +17,19 @@ struct `URI.Representable Integration Tests` {
     }
 
     @Test
-    func `Item with URI works`() throws {
-        let uri: URI = try .init("https://example.com/item")
+    func `an item link takes a URI`() throws {
         let item = try RSS.Item(
             title: "Test Item",
-            link: uri
+            link: try URI("https://example.com/item")
         )
 
         #expect(item.link?.value == "https://example.com/item")
     }
 
     @Test
-    func `Enclosure with URI works`() throws {
-        let uri: URI = try .init("https://example.com/media.mp3")
+    func `an enclosure url takes a URI`() throws {
         let enclosure = RSS.Enclosure(
-            url: uri,
+            url: try URI("https://example.com/media.mp3"),
             length: 1024,
             type: "audio/mpeg"
         )

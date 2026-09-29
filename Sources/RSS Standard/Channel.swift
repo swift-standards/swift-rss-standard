@@ -3,7 +3,7 @@ public import URI_Standard
 
 extension RSS {
 
-    public struct Channel: Hashable, Sendable, Codable {
+    public struct Channel: Hashable, Sendable {
 
         public let title: String
         public let link: URI
@@ -21,7 +21,6 @@ extension RSS {
         public let cloud: Cloud?
         public let ttl: Int?
         public let image: Image?
-        public private(set) var rating: String?
         public let textInput: TextInput?
         public let skipHours: Set<Hour>?
         public let skipDays: [Weekday]?
@@ -65,7 +64,6 @@ extension RSS {
             self.cloud = cloud
             self.ttl = ttl
             self.image = image
-            self.rating = nil
             self.textInput = textInput
             self.skipHours = skipHours
             self.skipDays = skipDays

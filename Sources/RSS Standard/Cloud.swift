@@ -1,11 +1,11 @@
 extension RSS {
 
-    public struct Cloud: Hashable, Sendable, Codable {
+    public struct Cloud: Hashable, Sendable {
         public let domain: String
         public let port: Int
         public let path: String
         public let registerProcedure: String
-        public let `protocol`: CloudProtocol
+        public let `protocol`: `Protocol`
 
         @_disfavoredOverload
         public init(
@@ -13,7 +13,7 @@ extension RSS {
             port: Int,
             path: String,
             registerProcedure: String,
-            protocol: CloudProtocol
+            protocol: `Protocol`
         ) {
             self.domain = domain
             self.port = port

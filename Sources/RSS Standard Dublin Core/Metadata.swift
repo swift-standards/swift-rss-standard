@@ -2,7 +2,7 @@ public import RFC_5322
 
 extension DublinCore {
 
-    public struct Metadata: Hashable, Sendable, Codable {
+    public struct Metadata: Hashable, Sendable {
 
         public let creator: [String]
 

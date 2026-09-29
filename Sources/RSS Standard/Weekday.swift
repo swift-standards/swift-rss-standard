@@ -1,6 +1,6 @@
 extension RSS {
 
-    public enum Weekday: String, Hashable, Sendable, Codable, CaseIterable {
+    public enum Weekday: String, Hashable, Sendable, CaseIterable {
         case monday = "Monday"
         case tuesday = "Tuesday"
         case wednesday = "Wednesday"

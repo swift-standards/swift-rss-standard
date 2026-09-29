@@ -1,6 +1,6 @@
 extension RSS {
 
-    public struct Category: Hashable, Sendable, Codable {
+    public struct Category: Hashable, Sendable {
         public let domain: String?
         public let value: String
 

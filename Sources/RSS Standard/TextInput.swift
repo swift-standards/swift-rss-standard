@@ -2,7 +2,7 @@ public import URI_Standard
 
 extension RSS {
 
-    public struct TextInput: Hashable, Sendable, Codable {
+    public struct TextInput: Hashable, Sendable {
         public let title: String
         public let description: String
         public let name: String

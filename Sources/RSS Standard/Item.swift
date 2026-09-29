@@ -3,7 +3,7 @@ public import URI_Standard
 
 extension RSS {
 
-    public struct Item: Hashable, Sendable, Codable {
+    public struct Item: Hashable, Sendable {
 
         public let title: String?
         public let description: String?
@@ -46,31 +46,6 @@ extension RSS {
             self.source = source
         }
 
-        private init(
-            title: String?,
-            description: String?,
-            link: URI?,
-            author: String?,
-            categories: [Category],
-            comments: URI?,
-            enclosure: Enclosure?,
-            guid: GUID?,
-            pubDate: RFC_5322.Date?,
-            source: Source?,
-            unchecked: Void
-        ) {
-            self.title = title
-            self.description = description
-            self.link = link
-            self.author = author
-            self.categories = categories
-            self.comments = comments
-            self.enclosure = enclosure
-            self.guid = guid
-            self.pubDate = pubDate
-            self.source = source
-        }
-
         @_disfavoredOverload
         public init(
             title: String? = nil,
@@ -99,34 +74,5 @@ extension RSS {
                 source: source
             )
         }
-    }
-}
-
-extension RSS.Item {
-    static func makeUnchecked(
-        title: String? = nil,
-        description: String? = nil,
-        link: URI? = nil,
-        author: String? = nil,
-        categories: [RSS.Category] = [],
-        comments: URI? = nil,
-        enclosure: RSS.Enclosure? = nil,
-        guid: RSS.GUID? = nil,
-        pubDate: RFC_5322.Date? = nil,
-        source: RSS.Source? = nil
-    ) -> RSS.Item {
-        RSS.Item(
-            title: title,
-            description: description,
-            link: link,
-            author: author,
-            categories: categories,
-            comments: comments,
-            enclosure: enclosure,
-            guid: guid,
-            pubDate: pubDate,
-            source: source,
-            unchecked: ()
-        )
     }
 }

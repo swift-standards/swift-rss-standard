@@ -43,22 +43,6 @@ extension RSS.GUID {
     }
 }
 
-extension RSS.GUID: Codable {
-    public init(from decoder: any Decoder) throws {
-        let container = try decoder.container(keyedBy: CodingKeys.self)
-        let value = try container.decode(String.self, forKey: .value)
-        let isPermaLink = try container.decodeIfPresent(Bool.self, forKey: .isPermaLink) ?? true
-
-        self = RSS.GUID.makeUnchecked(value, isPermaLink: isPermaLink)
-    }
-
-    public func encode(to encoder: any Encoder) throws {
-        var container = encoder.container(keyedBy: CodingKeys.self)
-        try container.encode(value, forKey: .value)
-        try container.encode(isPermaLink, forKey: .isPermaLink)
-    }
-}
-
 extension RSS.GUID: ExpressibleByStringLiteral {
 
     public init(stringLiteral value: String) {

@@ -2,7 +2,7 @@ public import URI_Standard
 
 extension RSS {
 
-    public struct Image: Hashable, Sendable, Codable {
+    public struct Image: Hashable, Sendable {
         public let url: URI
         public let title: String
         public let link: URI
@@ -51,26 +51,5 @@ extension RSS {
                 description: description
             )
         }
-    }
-}
-
-extension RSS.Image {
-    static func makeUnchecked(
-        url: URI,
-        title: String,
-        link: URI,
-        width: Int? = nil,
-        height: Int? = nil,
-        description: String? = nil
-    ) -> RSS.Image {
-
-        try! RSS.Image(
-            url: url.uri,
-            title: title,
-            link: link,
-            width: width,
-            height: height,
-            description: description
-        )
     }
 }

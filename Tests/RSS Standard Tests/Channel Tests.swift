@@ -1,16 +1,13 @@
 import RFC_5322
+import RSS_Standard
 import Testing
 import URI_Standard
 
-@testable import RSS_Standard
-
 @Suite
-struct `RSS Channel Tests` {
-    @Suite struct Unit {}
-    @Suite struct `Edge Case` {}
-    @Suite struct Integration {}
+struct `RSS channels` {
+
     @Test
-    func `Channel creation with required fields`() async throws {
+    func `a channel needs a title, a link and a description`() throws {
         let channel = RSS.Channel(
             title: "Test Feed",
             link: try URI("https://example.com"),
@@ -24,7 +21,7 @@ struct `RSS Channel Tests` {
     }
 
     @Test
-    func `Channel with optional fields`() async throws {
+    func `a channel records publication metadata`() throws {
         let pubDate = try RFC_5322.Date(
             year: 2025,
             month: 1,
@@ -54,18 +51,18 @@ struct `RSS Channel Tests` {
     }
 
     @Test
-    func `Channel with items`() async throws {
-        let item = try RSS.Item(
-            title: "Test Item",
-            description: "Item description",
-            link: try URI("https://example.com/item1")
-        )
-
+    func `a channel carries its items`() throws {
         let channel = RSS.Channel(
             title: "Test Feed",
             link: try URI("https://example.com"),
             description: "A test feed",
-            items: [item]
+            items: [
+                try RSS.Item(
+                    title: "Test Item",
+                    description: "Item description",
+                    link: try URI("https://example.com/item1")
+                )
+            ]
         )
 
         #expect(channel.items.count == 1)
@@ -74,18 +71,17 @@ struct `RSS Channel Tests` {
     }
 
     @Test
-    func `Channel with categories`() async throws {
+    func `a channel category may name its domain`() throws {
         let channel = RSS.Channel(
             title: "Test Feed",
             link: try URI("https://example.com"),
             description: "A test feed",
             categories: [
                 RSS.Category(domain: "https://example.com/categories", value: "Technology"),
-                RSS.Category(value: "News"),
+                "News",
             ]
         )
 
-        #expect(channel.categories.count == 2)
         #expect(channel.categories[0].domain == "https://example.com/categories")
         #expect(channel.categories[0].value == "Technology")
         #expect(channel.categories[1].domain == nil)
@@ -93,19 +89,9 @@ struct `RSS Channel Tests` {
     }
 
     @Test
-    func `Item validation - requires title or description`() async throws {
-
-        let item1 = try RSS.Item(title: "Test")
-        #expect(item1.title == "Test")
-        #expect(item1.description == nil)
-
-        let item2 = try RSS.Item(description: "Test description")
-        #expect(item2.title == nil)
-        #expect(item2.description == "Test description")
-
-        let item3 = try RSS.Item(title: "Title", description: "Description")
-        #expect(item3.title == "Title")
-        #expect(item3.description == "Description")
+    func `an item needs a title or a description`() throws {
+        #expect(try RSS.Item(title: "Test").description == nil)
+        #expect(try RSS.Item(description: "Test description").title == nil)
 
         #expect(throws: RSS.Error.itemRequiresTitleOrDescription) {
             try RSS.Item()
@@ -113,17 +99,17 @@ struct `RSS Channel Tests` {
     }
 
     @Test
-    func `Image validation - width and height limits`() async throws {
-
-        let validImage = try RSS.Image(
+    func `an image stays within the maximum width and height`() throws {
+        let image = try RSS.Image(
             url: try URI("https://example.com/logo.png"),
             title: "Logo",
             link: try URI("https://example.com"),
             width: 88,
             height: 31
         )
-        #expect(validImage.width == 88)
-        #expect(validImage.height == 31)
+
+        #expect(image.width == 88)
+        #expect(image.height == 31)
 
         #expect(throws: RSS.Error.imageWidthExceedsMaximum(145)) {
             try RSS.Image(

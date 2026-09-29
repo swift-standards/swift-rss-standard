@@ -16,25 +16,6 @@ extension RSS.Hour {
     }
 }
 
-extension RSS.Hour: Codable {
-    public func encode(to encoder: any Encoder) throws {
-        var container = encoder.singleValueContainer()
-        try container.encode(value)
-    }
-
-    public init(from decoder: any Decoder) throws {
-        let container = try decoder.singleValueContainer()
-        let value = try container.decode(Int.self)
-        guard let hour = RSS.Hour(value) else {
-            throw DecodingError.dataCorruptedError(
-                in: container,
-                debugDescription: "Hour must be 0-23, got \(value)"
-            )
-        }
-        self = hour
-    }
-}
-
 extension RSS.Hour: ExpressibleByIntegerLiteral {
     public init(integerLiteral value: Int) {
         guard let hour = RSS.Hour(value) else {
