@@ -11,9 +11,9 @@ extension RSS.Cloud {
 
 extension RSS.Cloud.`Protocol` {
 
-    public static let xmlRpc = RSS.Cloud.`Protocol`(rawValue: "xml-rpc")
-    public static let soap11 = RSS.Cloud.`Protocol`(rawValue: "soap 1.1")
-    public static let httpPost = RSS.Cloud.`Protocol`(rawValue: "http-post")
+    public static let xmlRpc = Self(rawValue: "xml-rpc")
+    public static let soap11 = Self(rawValue: "soap 1.1")
+    public static let httpPost = Self(rawValue: "http-post")
 }
 
 extension RSS.Cloud.`Protocol`: RawRepresentable {}

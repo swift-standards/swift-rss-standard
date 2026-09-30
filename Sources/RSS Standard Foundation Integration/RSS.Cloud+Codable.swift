@@ -1,5 +1,7 @@
 public import RSS_Standard
 
+private typealias CloudProtocol = RSS.Cloud.`Protocol`
+
 extension RSS.Cloud: Encodable, Decodable {
 
     enum CodingKeys: String, CodingKey {
@@ -17,7 +19,7 @@ extension RSS.Cloud: Encodable, Decodable {
             port: try container.decode(Int.self, forKey: .port),
             path: try container.decode(String.self, forKey: .path),
             registerProcedure: try container.decode(String.self, forKey: .registerProcedure),
-            protocol: try container.decode(RSS.Cloud.`Protocol`.self, forKey: .protocol)
+            protocol: try container.decode(CloudProtocol.self, forKey: .protocol)
         )
     }
 
