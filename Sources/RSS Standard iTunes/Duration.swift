@@ -23,6 +23,14 @@ extension iTunes {
             let numbers = try components.map { (component: Substring.UTF8View) throws(Error) -> Int in
                 try Self.number(component)
             }
+            let weights = [1, 60, 3600]
+            var total = 0
+            for (number, weight) in zip(numbers.reversed(), weights) {
+                let scaled = number.multipliedReportingOverflow(by: weight)
+                let sum = total.addingReportingOverflow(scaled.partialValue)
+                guard !scaled.overflow, !sum.overflow else { throw .invalidComponent(value) }
+                total = sum.partialValue
+            }
             self = switch numbers.count {
             case 1: Self(totalSeconds: numbers[0])
             case 2: Self(minutes: numbers[0], seconds: numbers[1])
@@ -43,7 +51,16 @@ extension iTunes.Duration {
         guard !component.isEmpty, component.allSatisfy({ (0x30...0x39).contains($0) }) else {
             throw .invalidComponent(String(decoding: component, as: UTF8.self))
         }
-        return component.reduce(0) { (total: Int, byte: UInt8) in total &* 10 &+ Int(byte &- 0x30) }
+        var total = 0
+        for byte in component {
+            let shifted = total.multipliedReportingOverflow(by: 10)
+            let sum = shifted.partialValue.addingReportingOverflow(Int(byte - 0x30))
+            guard !shifted.overflow, !sum.overflow else {
+                throw .invalidComponent(String(decoding: component, as: UTF8.self))
+            }
+            total = sum.partialValue
+        }
+        return total
     }
 }
 
