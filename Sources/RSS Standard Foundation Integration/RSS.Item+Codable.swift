@@ -1,6 +1,6 @@
-public import RFC_5322
+internal import RFC_5322
 public import RSS_Standard
-public import URI_Standard
+internal import URI_Standard
 import RFC_3986_Foundation_Integration
 import RFC_5322_Foundation_Integration
 

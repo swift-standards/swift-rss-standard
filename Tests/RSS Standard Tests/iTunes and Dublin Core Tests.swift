@@ -58,7 +58,7 @@ struct `iTunes and Dublin Core extensions` {
     @available(macOS 13, iOS 16, tvOS 16, watchOS 9, *)
     @Test
     func `a duration converts to and from a Swift duration`() {
-        let duration = iTunes.Duration(Swift.Duration.seconds(3665))
+        let duration = iTunes.Duration(Swift::Duration.seconds(3665))
 
         #expect(duration.hours == 1)
         #expect(duration.minutes == 1)

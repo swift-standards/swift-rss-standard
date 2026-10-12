@@ -1,4 +1,4 @@
-public import RFC_5322
+internal import RFC_5322
 public import RSS_Standard_iTunes
 import RFC_5322_Foundation_Integration
 

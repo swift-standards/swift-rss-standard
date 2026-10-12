@@ -1,5 +1,5 @@
 public import RSS_Standard
-public import URI_Standard
+internal import URI_Standard
 import RFC_3986_Foundation_Integration
 
 extension RSS.Enclosure: Encodable, Decodable {

@@ -39,7 +39,7 @@ extension iTunes {
         }
 
         @available(macOS 13, iOS 16, tvOS 16, watchOS 9, *)
-        public init(_ duration: Swift.Duration) {
+        public init(_ duration: Swift::Duration) {
             let totalSeconds = Int(duration.components.seconds)
             self.init(totalSeconds: totalSeconds)
         }
@@ -70,7 +70,7 @@ extension iTunes.Duration {
     }
 
     @available(macOS 13, iOS 16, tvOS 16, watchOS 9, *)
-    public var swiftDuration: Swift.Duration {
+    public var swiftDuration: Swift::Duration {
         .seconds(self.totalSeconds)
     }
 }

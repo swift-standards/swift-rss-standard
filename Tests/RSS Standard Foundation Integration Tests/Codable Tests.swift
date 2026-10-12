@@ -25,7 +25,7 @@ struct `RSS through Foundation Codable` {
                     title: "First Post",
                     description: "Hello, world!",
                     link: try URI("https://example.com/post1"),
-                    guid: try RSS.GUID("https://example.com/post1"),
+                    guid: RSS.GUID("https://example.com/post1"),
                     pubDate: try RFC_5322.Date(year: 2025, month: 1, day: 1)
                 )
             ]
@@ -124,7 +124,7 @@ struct `RSS through Foundation Codable` {
 
     @Test
     func `decoding an hour outside the day fails`() throws {
-        #expect(throws: (any Swift.Error).self) {
+        #expect(throws: (any Swift::Error).self) {
             try JSONDecoder().decode(RSS.Hour.self, from: Data("24".utf8))
         }
     }
