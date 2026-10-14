@@ -1,6 +1,6 @@
 public import URI_Standard
 
-extension iTunes {
+extension ITunes {
 
     public struct Channel: Hashable, Sendable {
 

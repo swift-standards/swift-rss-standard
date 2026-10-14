@@ -59,19 +59,19 @@ struct `RSS through Foundation Codable` {
 
     @Test
     func `a podcast channel survives a JSON round trip`() throws {
-        let channel = iTunes.Channel(
+        let channel = ITunes.Channel(
             author: "John Doe",
-            owner: iTunes.Owner(
+            owner: ITunes.Owner(
                 name: "Jane Smith",
                 email: try RFC_5322.Mailbox("jane@example.com")
             ),
             image: try URI("https://example.com/art.jpg"),
-            categories: [iTunes.Category(text: "Technology", subcategory: "Podcasting")],
+            categories: [ITunes.Category(text: "Technology", subcategory: "Podcasting")],
             type: .episodic
         )
 
         let decoded = try JSONDecoder().decode(
-            iTunes.Channel.self,
+            ITunes.Channel.self,
             from: try JSONEncoder().encode(channel)
         )
 
@@ -80,15 +80,15 @@ struct `RSS through Foundation Codable` {
 
     @Test
     func `a podcast episode survives a JSON round trip`() throws {
-        let episode = iTunes.Item(
-            duration: iTunes.Duration(hours: 1, minutes: 30, seconds: 45),
+        let episode = ITunes.Item(
+            duration: ITunes.Duration(hours: 1, minutes: 30, seconds: 45),
             episodeType: .full,
             season: 1,
             episode: 5
         )
 
         let decoded = try JSONDecoder().decode(
-            iTunes.Item.self,
+            ITunes.Item.self,
             from: try JSONEncoder().encode(episode)
         )
 

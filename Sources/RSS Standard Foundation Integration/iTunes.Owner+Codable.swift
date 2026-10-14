@@ -2,7 +2,7 @@ internal import RFC_5322
 public import RSS_Standard_iTunes
 import RFC_5322_Foundation_Integration
 
-extension iTunes.Owner: Encodable, Decodable {
+extension ITunes.Owner: Encodable, Decodable {
 
     enum CodingKeys: String, CodingKey {
         case name

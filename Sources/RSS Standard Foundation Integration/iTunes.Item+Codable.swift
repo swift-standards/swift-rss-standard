@@ -2,7 +2,7 @@ public import RSS_Standard_iTunes
 internal import URI_Standard
 import RFC_3986_Foundation_Integration
 
-extension iTunes.Item: Encodable, Decodable {
+extension ITunes.Item: Encodable, Decodable {
 
     enum CodingKeys: String, CodingKey {
         case author
@@ -21,10 +21,10 @@ extension iTunes.Item: Encodable, Decodable {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         self.init(
             author: try container.decodeIfPresent(String.self, forKey: .author),
-            duration: try container.decodeIfPresent(iTunes.Duration.self, forKey: .duration),
+            duration: try container.decodeIfPresent(ITunes.Duration.self, forKey: .duration),
             explicit: try container.decodeIfPresent(Bool.self, forKey: .explicit),
             episodeType: try container.decodeIfPresent(
-                iTunes.EpisodeType.self,
+                ITunes.EpisodeType.self,
                 forKey: .episodeType
             ),
             season: try container.decodeIfPresent(Int.self, forKey: .season),

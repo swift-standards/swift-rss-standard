@@ -1,4 +1,4 @@
-extension iTunes {
+extension ITunes {
 
     public struct Category: Hashable, Sendable {
         public let text: String

@@ -1,6 +1,6 @@
 public import RSS_Standard_iTunes
 
-extension iTunes.Duration: Encodable, Decodable {
+extension ITunes.Duration: Encodable, Decodable {
 
     enum CodingKeys: String, CodingKey {
         case hours

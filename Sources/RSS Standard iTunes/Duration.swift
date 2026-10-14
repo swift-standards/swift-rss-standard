@@ -1,4 +1,4 @@
-extension iTunes {
+extension ITunes {
 
     public struct Duration: Hashable, Sendable {
         public let hours: Int?
@@ -46,7 +46,7 @@ extension iTunes {
     }
 }
 
-extension iTunes.Duration {
+extension ITunes.Duration {
     private static func number(_ component: Substring.UTF8View) throws(Error) -> Int {
         guard !component.isEmpty, component.allSatisfy({ (0x30...0x39).contains($0) }) else {
             throw .invalidComponent(String(decoding: component, as: UTF8.self))
@@ -64,7 +64,7 @@ extension iTunes.Duration {
     }
 }
 
-extension iTunes.Duration {
+extension ITunes.Duration {
     public var totalSeconds: Int {
         (hours ?? 0) * 3600 + minutes * 60 + seconds
     }
@@ -75,7 +75,7 @@ extension iTunes.Duration {
     }
 }
 
-extension iTunes.Duration: ExpressibleByIntegerLiteral {
+extension ITunes.Duration: ExpressibleByIntegerLiteral {
 
     public init(integerLiteral value: Int) {
         self.init(totalSeconds: value)

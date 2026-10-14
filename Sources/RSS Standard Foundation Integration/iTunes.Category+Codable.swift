@@ -1,6 +1,6 @@
 public import RSS_Standard_iTunes
 
-extension iTunes.Category: Encodable, Decodable {
+extension ITunes.Category: Encodable, Decodable {
 
     enum CodingKeys: String, CodingKey {
         case text

@@ -2,7 +2,7 @@ public import RSS_Standard_iTunes
 internal import URI_Standard
 import RFC_3986_Foundation_Integration
 
-extension iTunes.Channel: Encodable, Decodable {
+extension ITunes.Channel: Encodable, Decodable {
 
     enum CodingKeys: String, CodingKey {
         case author
@@ -20,12 +20,12 @@ extension iTunes.Channel: Encodable, Decodable {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         self.init(
             author: try container.decodeIfPresent(String.self, forKey: .author),
-            owner: try container.decodeIfPresent(iTunes.Owner.self, forKey: .owner),
+            owner: try container.decodeIfPresent(ITunes.Owner.self, forKey: .owner),
             image: try container.decodeIfPresent(URI.self, forKey: .image),
-            categories: try container.decodeIfPresent([iTunes.Category].self, forKey: .categories)
+            categories: try container.decodeIfPresent([ITunes.Category].self, forKey: .categories)
                 ?? [],
             explicit: try container.decodeIfPresent(Bool.self, forKey: .explicit),
-            type: try container.decodeIfPresent(iTunes.PodcastType.self, forKey: .type),
+            type: try container.decodeIfPresent(ITunes.PodcastType.self, forKey: .type),
             subtitle: try container.decodeIfPresent(String.self, forKey: .subtitle),
             summary: try container.decodeIfPresent(String.self, forKey: .summary),
             keywords: try container.decodeIfPresent([String].self, forKey: .keywords)

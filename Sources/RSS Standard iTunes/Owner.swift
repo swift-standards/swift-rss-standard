@@ -1,6 +1,6 @@
 public import RFC_5322
 
-extension iTunes {
+extension ITunes {
 
     public struct Owner: Hashable, Sendable {
         public let name: String

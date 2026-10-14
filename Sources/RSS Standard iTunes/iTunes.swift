@@ -1,3 +1,3 @@
-public enum iTunes {
+public enum ITunes {
 
 }
