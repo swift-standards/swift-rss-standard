@@ -16,8 +16,7 @@ extension RSS {
         }
 
         @_disfavoredOverload
-        public init<T: URI.Representable>(title: String, description: String, name: String, link: T)
-        {
+        public init<T: URI.Representable>(title: String, description: String, name: String, link: T) {
             self.init(title: title, description: description, name: name, link: link.uri)
         }
     }

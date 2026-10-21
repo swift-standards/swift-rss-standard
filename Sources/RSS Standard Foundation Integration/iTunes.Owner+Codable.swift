@@ -1,6 +1,6 @@
 internal import RFC_5322
-public import RSS_Standard_iTunes
 import RFC_5322_Foundation_Integration
+public import RSS_Standard_iTunes
 
 extension ITunes.Owner: Encodable, Decodable {
 

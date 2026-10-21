@@ -1,6 +1,6 @@
+import RFC_3986_Foundation_Integration
 public import RSS_Standard_iTunes
 internal import URI_Standard
-import RFC_3986_Foundation_Integration
 
 extension ITunes.Channel: Encodable, Decodable {
 

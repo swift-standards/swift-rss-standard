@@ -31,11 +31,12 @@ extension ITunes {
                 guard !scaled.overflow, !sum.overflow else { throw .invalidComponent(value) }
                 total = sum.partialValue
             }
-            self = switch numbers.count {
-            case 1: Self(totalSeconds: numbers[0])
-            case 2: Self(minutes: numbers[0], seconds: numbers[1])
-            default: Self(hours: numbers[0], minutes: numbers[1], seconds: numbers[2])
-            }
+            self =
+                switch numbers.count {
+                case 1: Self(totalSeconds: numbers[0])
+                case 2: Self(minutes: numbers[0], seconds: numbers[1])
+                default: Self(hours: numbers[0], minutes: numbers[1], seconds: numbers[2])
+                }
         }
 
         @available(macOS 13, iOS 16, tvOS 16, watchOS 9, *)

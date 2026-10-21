@@ -1,6 +1,6 @@
 internal import RFC_5322
-public import RSS_Standard_Dublin_Core
 import RFC_5322_Foundation_Integration
+public import RSS_Standard_Dublin_Core
 
 extension DublinCore.Metadata: Encodable, Decodable {
 
