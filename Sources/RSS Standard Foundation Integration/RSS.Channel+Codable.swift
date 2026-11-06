@@ -1,7 +1,7 @@
 import RFC_3986_Foundation_Integration
 internal import RFC_5322
-import RFC_5646
 import RFC_5322_Foundation_Integration
+import RFC_5646
 public import RSS_Standard
 internal import URI_Standard
 
