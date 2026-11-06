@@ -1,4 +1,5 @@
 public import RFC_5322
+public import RFC_5646
 
 extension DublinCore {
 
@@ -22,7 +23,7 @@ extension DublinCore {
 
         public let source: String?
 
-        public let language: String?
+        public let language: RFC_5646.LanguageTag?
 
         public let relation: String?
 
@@ -40,7 +41,7 @@ extension DublinCore {
             format: String? = nil,
             identifier: String? = nil,
             source: String? = nil,
-            language: String? = nil,
+            language: RFC_5646.LanguageTag? = nil,
             relation: String? = nil,
             coverage: String? = nil,
             rights: String? = nil

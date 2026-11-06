@@ -1,4 +1,5 @@
 internal import RFC_5322
+import RFC_5646
 import RFC_5322_Foundation_Integration
 public import RSS_Standard_Dublin_Core
 
@@ -32,7 +33,7 @@ extension DublinCore.Metadata: Encodable, Decodable {
             format: try container.decodeIfPresent(String.self, forKey: .format),
             identifier: try container.decodeIfPresent(String.self, forKey: .identifier),
             source: try container.decodeIfPresent(String.self, forKey: .source),
-            language: try container.decodeIfPresent(String.self, forKey: .language),
+            language: try? container.decodeIfPresent(RFC_5646.LanguageTag.self, forKey: .language),
             relation: try container.decodeIfPresent(String.self, forKey: .relation),
             coverage: try container.decodeIfPresent(String.self, forKey: .coverage),
             rights: try container.decodeIfPresent(String.self, forKey: .rights)

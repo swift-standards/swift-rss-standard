@@ -1,4 +1,5 @@
 import RFC_5322
+import RFC_5646
 import RSS_Standard
 import Testing
 import URI_Standard
@@ -12,7 +13,7 @@ struct `README examples` {
             title: "My Blog",
             link: try URI("https://example.com"),
             description: "A blog about Swift development",
-            language: "en-US",
+            language: try RFC_5646.LanguageTag("en-US"),
             items: [
                 try RSS.Item(
                     title: "First Post",
@@ -25,7 +26,7 @@ struct `README examples` {
 
         #expect(channel.title == "My Blog")
         #expect(channel.link.value == "https://example.com")
-        #expect(channel.language == "en-US")
+        #expect(channel.language?.value == "en-US")
         #expect(channel.items.count == 1)
         #expect(channel.items[0].title == "First Post")
     }

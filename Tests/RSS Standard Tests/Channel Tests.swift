@@ -1,4 +1,5 @@
 import RFC_5322
+import RFC_5646
 import RSS_Standard
 import Testing
 import URI_Standard
@@ -34,7 +35,7 @@ struct `RSS channels` {
             title: "Test Feed",
             link: try URI("https://example.com"),
             description: "A test feed",
-            language: "en-US",
+            language: try RFC_5646.LanguageTag("en-US"),
             copyright: "© 2025",
             managingEditor: "editor@example.com",
             webMaster: "webmaster@example.com",
@@ -42,7 +43,7 @@ struct `RSS channels` {
             generator: "My Generator"
         )
 
-        #expect(channel.language == "en-US")
+        #expect(channel.language?.value == "en-US")
         #expect(channel.copyright == "© 2025")
         #expect(channel.managingEditor == "editor@example.com")
         #expect(channel.webMaster == "webmaster@example.com")

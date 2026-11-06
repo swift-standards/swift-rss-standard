@@ -1,5 +1,8 @@
+import Domain_Standard
 import Foundation
+import RFC_3986
 import RFC_5322
+import RFC_5646
 import RSS_Standard
 import RSS_Standard_Dublin_Core
 import RSS_Standard_Foundation_Integration
@@ -16,7 +19,7 @@ struct `RSS through Foundation Codable` {
             title: "My Blog",
             link: try URI("https://example.com"),
             description: "A blog about Swift development",
-            language: "en-US",
+            language: try RFC_5646.LanguageTag("en-US"),
             categories: ["Technology"],
             skipHours: [12],
             skipDays: [.monday],
@@ -42,9 +45,9 @@ struct `RSS through Foundation Codable` {
     @Test
     func `a cloud registration survives a JSON round trip`() throws {
         let cloud = RSS.Cloud(
-            domain: "rpc.example.com",
+            domain: try Domain("rpc.example.com"),
             port: 80,
-            path: "/RPC2",
+            path: try RFC_3986.URI.Path("/RPC2"),
             registerProcedure: "pingMe",
             protocol: .xmlRpc
         )

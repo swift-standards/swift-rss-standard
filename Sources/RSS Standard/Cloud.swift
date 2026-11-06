@@ -1,17 +1,20 @@
+public import Domain_Standard
+public import RFC_3986
+
 extension RSS {
 
     public struct Cloud: Hashable, Sendable {
-        public let domain: String
+        public let domain: Domain
         public let port: Int
-        public let path: String
+        public let path: RFC_3986.URI.Path
         public let registerProcedure: String
         public let `protocol`: `Protocol`
 
         @_disfavoredOverload
         public init(
-            domain: String,
+            domain: Domain,
             port: Int,
-            path: String,
+            path: RFC_3986.URI.Path,
             registerProcedure: String,
             protocol: `Protocol`
         ) {

@@ -1,5 +1,6 @@
 import RFC_3986_Foundation_Integration
 internal import RFC_5322
+import RFC_5646
 import RFC_5322_Foundation_Integration
 public import RSS_Standard
 internal import URI_Standard
@@ -34,7 +35,7 @@ extension RSS.Channel: Encodable, Decodable {
             title: try container.decode(String.self, forKey: .title),
             link: try container.decode(URI.self, forKey: .link),
             description: try container.decode(String.self, forKey: .description),
-            language: try container.decodeIfPresent(String.self, forKey: .language),
+            language: try? container.decodeIfPresent(RFC_5646.LanguageTag.self, forKey: .language),
             copyright: try container.decodeIfPresent(String.self, forKey: .copyright),
             managingEditor: try container.decodeIfPresent(String.self, forKey: .managingEditor),
             webMaster: try container.decodeIfPresent(String.self, forKey: .webMaster),

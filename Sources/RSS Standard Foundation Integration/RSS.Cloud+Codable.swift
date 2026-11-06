@@ -1,3 +1,6 @@
+import Domain_Standard
+import RFC_3986
+import RFC_3986_Foundation_Integration
 public import RSS_Standard
 
 private typealias CloudProtocol = RSS.Cloud.`Protocol`
@@ -15,9 +18,9 @@ extension RSS.Cloud: Encodable, Decodable {
     public init(from decoder: any Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         self.init(
-            domain: try container.decode(String.self, forKey: .domain),
+            domain: try container.decode(Domain.self, forKey: .domain),
             port: try container.decode(Int.self, forKey: .port),
-            path: try container.decode(String.self, forKey: .path),
+            path: try container.decode(RFC_3986.URI.Path.self, forKey: .path),
             registerProcedure: try container.decode(String.self, forKey: .registerProcedure),
             protocol: try container.decode(CloudProtocol.self, forKey: .protocol)
         )

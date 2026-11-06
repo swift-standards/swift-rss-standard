@@ -1,4 +1,5 @@
 public import RFC_5322
+public import RFC_5646
 public import URI_Standard
 
 extension RSS {
@@ -9,7 +10,7 @@ extension RSS {
         public let link: URI
         public let description: String
 
-        public let language: String?
+        public let language: RFC_5646.LanguageTag?
         public let copyright: String?
         public let managingEditor: String?
         public let webMaster: String?
@@ -32,7 +33,7 @@ extension RSS {
             title: String,
             link: URI,
             description: String,
-            language: String? = nil,
+            language: RFC_5646.LanguageTag? = nil,
             copyright: String? = nil,
             managingEditor: String? = nil,
             webMaster: String? = nil,
@@ -75,7 +76,7 @@ extension RSS {
             title: String,
             link: L,
             description: String,
-            language: String? = nil,
+            language: RFC_5646.LanguageTag? = nil,
             copyright: String? = nil,
             managingEditor: String? = nil,
             webMaster: String? = nil,
