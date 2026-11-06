@@ -5,7 +5,7 @@ extension RSS {
 
     public struct Cloud: Hashable, Sendable {
         public let domain: Domain
-        public let port: Int
+        public let port: RFC_3986.URI.Port
         public let path: RFC_3986.URI.Path
         public let registerProcedure: String
         public let `protocol`: `Protocol`
@@ -13,7 +13,7 @@ extension RSS {
         @_disfavoredOverload
         public init(
             domain: Domain,
-            port: Int,
+            port: RFC_3986.URI.Port,
             path: RFC_3986.URI.Path,
             registerProcedure: String,
             protocol: `Protocol`

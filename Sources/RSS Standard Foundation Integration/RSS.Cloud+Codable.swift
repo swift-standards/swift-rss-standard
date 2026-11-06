@@ -19,7 +19,7 @@ extension RSS.Cloud: Encodable, Decodable {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         self.init(
             domain: try container.decode(Domain.self, forKey: .domain),
-            port: try container.decode(Int.self, forKey: .port),
+            port: try container.decode(RFC_3986.URI.Port.self, forKey: .port),
             path: try container.decode(RFC_3986.URI.Path.self, forKey: .path),
             registerProcedure: try container.decode(String.self, forKey: .registerProcedure),
             protocol: try container.decode(CloudProtocol.self, forKey: .protocol)
